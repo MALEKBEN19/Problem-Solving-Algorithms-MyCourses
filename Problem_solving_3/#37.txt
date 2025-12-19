@@ -27,7 +27,6 @@ void PrintVectorElement(vector<string>vWords) {
 
 
 }
-
 int main() {
 	string MyText = MyLib::ReadText();
 	PrintVectorElement(SplitText(MyText," "));
