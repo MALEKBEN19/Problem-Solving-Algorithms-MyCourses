@@ -1,0 +1,32 @@
+
+int ReadPositiveNumber() {
+	int num = 0;
+	do {
+		cout << "Please enter positive number!\n";
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+
+
+int SumDigits(int num) {
+	int remiander = 0;
+	int sum = 0;
+	while (num > 0) {
+		remiander = num % 10;
+		num = num / 10;
+		sum+= remiander;
+	}
+	return sum;
+}
+void PrintDigits(int num) {
+	cout<<SumDigits(num)<<endl;
+}
+
+int main() {
+	
+	PrintDigits(ReadPositiveNumber());
+	
+	return 0;
+}

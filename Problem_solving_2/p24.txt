@@ -1,0 +1,42 @@
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+
+void FillArryWithRandomNumbers(int arr[100],int &lenght) {
+	cout << "Enter number of  Element\n";
+	cin >> lenght;
+	for (int i = 0; i < lenght;i+=1){
+		arr[i] = RandomNumber(1, 100);
+	}
+
+}
+
+void PrintArry(int arr[100],int lenght) {
+	for (int x = 0; x < lenght;x++) {
+		cout << arr[x] << " ";
+	}
+	cout << endl;
+}
+int GetMaxNumberOFanArry(int arr[100], int lenght){
+	int maxnum = 90;
+	int num = 0;
+	for (int x = 0; x < lenght; x++) {
+		if (arr[x] >= maxnum) {
+			num = arr[x];
+		}
+	}
+
+	return num;
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	int arr1[100],ArryLenght;
+	
+	FillArryWithRandomNumbers(arr1,ArryLenght);
+	cout << "Arry Element : ";
+	PrintArry(arr1,ArryLenght);
+	cout << "Max Number of An arry is " << GetMaxNumberOFanArry(arr1,ArryLenght);
+	return 0;
+}

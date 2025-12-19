@@ -1,0 +1,36 @@
+int ReadPositiveNumber() {
+	int num = 0;
+	do {
+		cout << "Please enter positive number!\n";
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+
+int HowManyDigitsFerquency(int num) {
+	int remiander = 0;
+	int counter = 0;
+	
+	while (num > 0) {
+		remiander = num % 10;
+		num = num / 10;
+		
+		if (remiander == 1) {
+			counter+=1;
+		}
+	}
+	return counter;
+}
+
+void PrintDigitsINferquency(int num) {
+	cout << "Digit " << 2 << " frequency is " << HowManyDigitsFerquency(num) << " time(s) " << endl;
+}
+
+int main() {
+	 
+	PrintDigitsINferquency(ReadPositiveNumber());
+	
+	
+	return 0;
+}

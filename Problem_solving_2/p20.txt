@@ -1,0 +1,29 @@
+enum enTypeOfCharacters{SmallLetter=1, CapitalLetter = 2, SpecialCharacter = 3, digit = 4
+};
+int RandomNumber(int from,int to) {
+	int RandomN = rand()%(to-from+1)+from;
+	return RandomN;
+}
+char GetCharacter(enTypeOfCharacters Type) {
+	switch(Type){
+	case enTypeOfCharacters::SmallLetter:return char(RandomNumber(65, 90));
+
+	case enTypeOfCharacters::CapitalLetter:return char(RandomNumber(97, 122));
+
+	case enTypeOfCharacters::SpecialCharacter:return char(RandomNumber(33, 46));
+
+	case enTypeOfCharacters::digit:return char(RandomNumber(48, 57));
+	}
+}
+
+
+
+
+int main() {
+	srand((unsigned)time(NULL));
+	cout<<GetCharacter(enTypeOfCharacters::SmallLetter)<<endl;
+	cout << GetCharacter(enTypeOfCharacters::CapitalLetter) << endl;
+	cout << GetCharacter(enTypeOfCharacters::SpecialCharacter) << endl;
+	cout << GetCharacter(enTypeOfCharacters::digit) << endl;
+	return 0;
+}

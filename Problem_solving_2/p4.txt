@@ -1,0 +1,35 @@
+int ReadPositiveNumber() {
+	int num = 0;
+	do {
+		cout << "Please enter positive number!\n";
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+bool IsPerfectNumberOrNot(int number) {
+	int sum = 0;
+	for (int counter = 1; counter < number; counter++) {
+		if (number % counter == 0) {
+			sum += counter;
+		}
+	}
+	return sum == number;
+}
+
+
+void PrintPerfectNumbersFrom1ToN(int num) {
+	for (int x = 1; x <= num;x++) {
+		if (IsPerfectNumberOrNot(x)) {
+			cout << x << endl;
+		}
+	}
+	
+}
+
+int main() {
+
+	PrintPerfectNumbersFrom1ToN(ReadPositiveNumber());
+	
+	return 0;
+}

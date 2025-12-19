@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+#include <string>
+#include <cmath>
+#include<cstdlib>
+
+enum enPrimeNotPrime { Prime = 1, NotPrime = 2 };
+int RandomNumber(int from, int to) {
+	int Randu = rand() % (to - from + 1) + from;
+	return Randu;
+}
+
+void FillArryWithRandomNumbers(int arr[100],int &ArryLenght) {
+	cout << "How many element you want?\n";
+	cin >> ArryLenght;
+	for (int x = 0; x < ArryLenght; x++) {
+		arr[x] = RandomNumber(1,100);
+	}
+}
+
+void PrintArry(int arr[100], int& ArryLenght) {
+	for (int f = 0; f < ArryLenght; f++) {
+		cout << arr[f]<<" ";
+	}
+	cout << endl;
+}
+
+void CopyOfArry(int arr1[100], int arr2[100],int ArryLenght) {
+	for (int g = 0; g < ArryLenght; g++) {
+		arr2[g] = arr1[g];
+	}
+}
+
+enPrimeNotPrime CheckPrimeNumber(int num) {
+	int M = round(num / 2);
+	for (int counter = 2; counter <= M; counter++) {
+		if (num % counter == 0) {
+			return enPrimeNotPrime::NotPrime;
+		}
+	}
+	return enPrimeNotPrime::Prime;
+}
+void PrintPrimeNumbersInArry(int arry[100],int Lenght) {
+	for (int h = 0; h < Lenght; h++) {
+		if (CheckPrimeNumber(arry[h]) == enPrimeNotPrime::Prime) {
+			cout << arry[h]<<" ";
+		}
+	}
+}
+
+
+
+
+int main(){
+	srand((unsigned)time(NULL));
+	int arr1[100], arr2[100], ArryLenght = 0;
+
+	FillArryWithRandomNumbers(arr1,ArryLenght);
+	cout << "Arry 1 element :\n";
+	PrintArry(arr1, ArryLenght);
+
+	CopyOfArry(arr1, arr2, ArryLenght);
+
+	cout << "\nPrime Numbers in Arry 2 :\n";
+	PrintPrimeNumbersInArry(arr2,ArryLenght);
+
+	return 0;
+}

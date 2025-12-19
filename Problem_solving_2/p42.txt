@@ -1,0 +1,45 @@
+
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+
+
+void FillArryWithRandomNumbers(int arr[100], int& length) {
+	cout << "\nHow many element do you want? \n";
+	cin >> length;
+	for (int i = 0; i < length; i += 1) {
+		arr[i] = RandomNumber(1, 100);
+	}
+}
+void PrintArrays(int arr[100],int length) {
+	for (int g = 0; g < length;g++ ) {
+		cout << arr[g] << " ";
+	}
+	cout << endl;
+}
+
+int CheckOddInArray(int arr[100], int length) {
+	int counter = 0;
+	for (int x = 0; x < length;x++) {
+		if (arr[x]%2!=0) {
+			counter++;
+		}
+	}
+	return counter;
+}
+
+
+
+int main() {
+	srand((unsigned)time(NULL));
+	int arr1[100], ArrLength;
+	FillArryWithRandomNumbers(arr1,ArrLength);
+	cout << "Array Element : ";
+	PrintArrays(arr1, ArrLength);
+	cout << "Odd numbers count is : " << CheckOddInArray(arr1, ArrLength)<<endl;
+	
+
+
+	return 0;
+}

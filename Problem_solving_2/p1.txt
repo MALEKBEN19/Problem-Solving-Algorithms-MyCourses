@@ -1,0 +1,32 @@
+void printMultiplicationTable() {
+	cout << "                                                                          \n";
+	cout << "                              Multiplication Table from 1 to 10                      \n";
+	cout << "                                                                          \n";
+}
+void printNumbersfrom1to10_Vertical() {
+	for (int x = 1; x <= 10; x++) {
+		cout << "\t  " << x<< " ";
+	}
+	cout<<endl;
+
+}
+void PrintALineWithHyphen() {
+	cout << "____________________________________________________________________________________\n";
+}
+void printNumbersfrom1to10_Horizontal() {
+
+	for (int x = 1; x <= 10; x++) {
+		cout << x << "\t| ";
+		for (int z = 1; z <= 10; z++) {
+			cout << z*x<<"\t  ";
+		}
+		cout << endl;
+	}
+}
+
+void ExcuteTheProjectofMultiplicationTable() {
+	printMultiplicationTable();
+	printNumbersfrom1to10_Vertical();
+	PrintALineWithHyphen();
+	printNumbersfrom1to10_Horizontal();
+}

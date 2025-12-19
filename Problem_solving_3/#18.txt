@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+using namespace std;
+
+
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(0,100);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<setw(3)<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+void PrintIntersectedNumber(int Matrix1[3][3], int Matrix2[3][3], short Rows, short Colm) {
+	short count = 0;
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			if (Matrix1[a][x] == Matrix2[a][x]) {
+				cout << Matrix1[a][x]<<" ";
+			}
+		}
+	}
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3], Mtx2[3][3];
+
+	
+	cout << "Matrix 1 :\n";
+
+	FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+	
+	cout << "Matrix 2 :\n";
+
+	FillArrayWithNumbersFrom0To1(Mtx2, 3, 3);
+	PrintMatrixElement(Mtx2, 3, 3);
+
+	cout << "Intersected Numbers Are :\n";
+	PrintIntersectedNumber(Mtx1,Mtx2,3,3);
+
+
+}
+

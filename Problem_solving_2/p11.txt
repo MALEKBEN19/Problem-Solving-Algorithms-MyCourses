@@ -1,0 +1,37 @@
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+bool CheckIfPalindromeOrNot(int num) {
+	int Remiander = 0;
+	int num2 = num;
+	int revers = 0;
+	while (num2>0) {
+		Remiander = num2 % 10;
+		num2 = num2 / 10;
+		revers = revers * 10 + Remiander;
+	}
+	return revers == num;
+}
+
+
+int main() {
+	int num = readPositiveNumber("Please enter positive number!");
+	if (CheckIfPalindromeOrNot(num)) {
+		cout << "Yes, It's a Palindrome Number!\n";
+	}
+	else {
+		cout << "No, It's not a Palindrome Number!\n";
+
+	};
+	
+
+
+
+	return 0;
+}

@@ -1,0 +1,27 @@
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+void PrintPatternNumber(int num){
+
+	for (int x = 1; x <= num; x++){
+		for (int f = 1; f <= x;f++) {
+			cout << x;
+		}
+		cout << endl;
+	}
+}
+
+
+int main() {
+
+	PrintPatternNumber(readPositiveNumber("Please enter positive number!"));
+
+
+	return 0;
+}

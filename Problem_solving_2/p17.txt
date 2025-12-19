@@ -1,0 +1,25 @@
+string PassWord() {
+	string Passw = " ";
+	cout << "Please enter your password!\n";
+	cin >> Passw;
+	return Passw;
+}
+void CheckPassword(string pass) {
+	string word = "";
+	string PassWord = pass;
+	for (int a = 65,counter=1; a <= 90; a++) {
+	 for (int X = 65; X <= 90; X++) {
+	  for (int f = 65; f <= 90; f++,counter++) {
+	   word = word + char(a);
+	   word += char(X);
+	   word += char(f);
+	   if (word == PassWord) 
+	   {
+	    cout << "Password is " << word << endl;
+	    cout << "Found after " << counter << " trial(s)"<< endl;
+	    }
+	   word = "";
+	}
+	}
+	}
+}

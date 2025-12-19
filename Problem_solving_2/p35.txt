@@ -1,0 +1,67 @@
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+void FillArryWithRandomNumbers(int arra1[100], int &length) {
+	cout << "How many element do you want?\n";
+	cin >> length;
+
+	for (int x = 0; x < length; x++) {
+		arra1[x] = RandomNumber(1,100);
+	}
+
+}
+
+void PrintArry(int arr[100], int length) {
+	for (int x = 0; x<length; x++) {
+		cout<<arr[x]<<" ";
+	}
+	cout << endl;
+}
+short CheckIfNumberInsideAnArry(int arr[100], int length,int searchfor) {
+	
+	int counter = 0;
+	for (int h = 0; h < length; h++) {
+		if (arr[h] == searchfor) {
+			return counter;
+		}
+		counter++;
+	}
+	return -1;
+}
+bool CheckIfNumberExists(short checknumber) {
+	return checknumber >= 0;
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	int arra1[100], length = 0,SearchFor=0;
+	short numberPoistion = 0;
+	FillArryWithRandomNumbers(arra1,length);
+
+	cout << "Arry 1 element :\n";
+	PrintArry(arra1,length);
+
+	SearchFor =readPositiveNumber("Please enter a number to search for?");
+	cout << "The Number that you are looking for is : "<< SearchFor<<endl;
+    numberPoistion=CheckIfNumberInsideAnArry(arra1, length, SearchFor);
+
+	if (CheckIfNumberExists(numberPoistion)) {
+		cout << "Yes, The number is found :-) " << endl;
+	}
+	else {
+		cout << "No, The number is not found :-( " << endl;
+	}
+	
+	return 0;
+}

@@ -1,0 +1,67 @@
+short AskUserToEnterANumber() {
+	short Check=0;
+	cout << "Please Enter a Number to Check? ";
+	cin >> Check;
+	while (cin.fail()) {
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		cout << "Wrong Input, Please enter a valid digit? ";
+		cin >> Check;
+	}
+	return Check;
+}
+ 
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(1,100);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<setw(3)<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+short CountNumberRepeatInMatrix(int Matrix[3][3], short Rows, short Colm,short check) {
+	short counter = 0;
+
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			if (Matrix[a][x] == check) {
+				counter++;
+			}
+		}
+	}
+	return counter;
+}
+
+
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3];
+	cout << "Matrix 1 :\n";
+
+	FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+
+	short check=AskUserToEnterANumber();
+	short count = CountNumberRepeatInMatrix(Mtx1, 3, 3,check);
+	cout << "Number " << check << " Count in Matrix is " << count<<endl;
+
+
+	system("pause>0");
+}
+

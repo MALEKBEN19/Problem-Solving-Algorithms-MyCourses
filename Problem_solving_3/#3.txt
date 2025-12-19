@@ -1,0 +1,67 @@
+
+#include <iostream>
+#include<string>
+#include <random>
+#include<iomanip>
+using namespace std;
+
+
+int RandomNumber(int from , int to) {
+    int rnd = rand() % (to - from + 1) + from;
+    return rnd;
+}
+
+void FillMatrixWithRandomNumber(int arr[3][3],int row,int colm) {
+    for (int x = 0; x < row; x++) {
+        for (int g = 0; g < colm; g++) {
+            arr[x][g] = RandomNumber(1, 100);
+        }
+    }
+
+}
+void PrintMatrixWithRandomNumber(int arr[3][3], int row, int colm) {
+    cout << "The matrix element :\n";
+    for (int a = 0; a < row; a++) {
+        for (int b = 0; b < colm; b++) {
+            cout << setw(3) << arr[a][b] << "  ";
+        }
+        cout << endl;
+    }
+}
+
+int RowSum(int arr[3][3], int FixRow, int colm) {
+    int sum = 0;
+    for (int j = 0; j < colm;j++) {
+        sum += arr[FixRow][j];
+    }
+    return sum;
+}
+void StoreTheSumInArray(int arr[3][3],int ArraySum[3], int Row, int Colm) {
+
+    for (int x = 0; x < Row; x++) {
+         ArraySum[x] = RowSum(arr, x, Colm);
+    }
+
+}
+
+void PrintSumOfEachRow(int ArraySum[3],int row) {
+    for (int x = 0; x < row; x++) {
+        cout << "Row" << x + 1 <<" sum = " <<ArraySum[x]<< endl;
+    }
+}
+
+
+
+int main()
+{                
+    int arr[3][3];
+    int StoreTheSum[3];
+    FillMatrixWithRandomNumber(arr, 3, 3);
+    PrintMatrixWithRandomNumber(arr, 3, 3);
+
+
+    StoreTheSumInArray(arr, StoreTheSum, 3, 3);
+    PrintSumOfEachRow(StoreTheSum,3);
+
+    return 0;
+}

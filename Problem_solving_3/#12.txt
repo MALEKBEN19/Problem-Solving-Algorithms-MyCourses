@@ -1,0 +1,64 @@
+void FillArrayWithOrderedNumbers(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(1,10);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			printf(" %0*d  ",2 ,Matrix[a][x]);
+		}
+		cout << endl;
+	}
+
+}
+
+
+bool CheckIfNumberExist(int num,int check) {
+	return(num==check);
+}
+
+bool CheckIfTypicalMatrices(int mtx1[3][3], int  mtx2[3][3], short row, short column) {
+	for (int x = 0; x < row; x++) {
+		for (int g = 0; g < column; g++) {
+			if (!CheckIfNumberExist(mtx1[x][g], mtx2[x][g])) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3], Mtx2[3][3];
+
+	cout << "matrix : 1 \n\n";
+
+	FillArrayWithOrderedNumbers(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+	
+	cout << "\nmatrix : 2 \n\n";
+
+	FillArrayWithOrderedNumbers(Mtx2, 3, 3);
+
+	PrintMatrixElement(Mtx2, 3, 3);
+
+	if (CheckIfTypicalMatrices(Mtx1, Mtx2, 3, 3)) {
+		cout << "Yes : The matrices Are Typical!\n";
+	}
+	else {
+		cout << "No : The matrices Aren't Typical!\n";
+	}
+
+
+	system("pause>0");
+}

@@ -1,0 +1,61 @@
+enum enCountLetter { Capital = 0,Small=1,All=2 };
+
+short CountAllCapitalLetterInString(string Text) {
+	short counter = 0;
+	for (int b = 0; b < Text.length(); b++) {
+		if (isupper(Text[b])) {
+			counter++;
+		}
+	}
+	return counter;
+}
+short CountAllSmallerLetterInString(string Text) {
+	short counter = 0;
+	for (int b = 0; b < Text.length(); b++) {
+		if (islower(Text[b])) {
+			counter++;
+		}
+	}
+	return counter;
+}
+
+
+
+
+
+
+
+short CountLetter(string letter, enCountLetter count = enCountLetter::All) {
+	if (count == enCountLetter::All) {
+		return letter.length();
+	}
+	short Counter = 0;
+	for (int x = 0; x < letter.length(); x++) {
+		if (isupper(letter[x]) && count == enCountLetter::Capital) {
+			Counter++;
+		}
+		if (islower(letter[x]) && count == enCountLetter::Small) {
+			Counter++;
+		}
+	}
+	return Counter;
+}
+
+
+
+
+
+
+
+
+int main(){
+
+	string Text = MyLib::ReadText();
+	cout << "String Length : " << CountLetter (Text)<<endl;
+	cout << "Capital Letter count : " << CountLetter(Text,enCountLetter::Capital) << endl;
+	cout << "Small Letter count : " << CountLetter(Text, enCountLetter::Small) << endl;
+
+
+	system("pause>0");
+}
+

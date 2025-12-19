@@ -1,0 +1,19 @@
+char InvertCharacter(char &Charact) {
+	if (isupper(Charact)) {
+		Charact = tolower(Charact);
+	}
+	else {
+		Charact = toupper(Charact);
+	}
+	return Charact;
+}
+
+
+
+int main(){
+	char c = 'a';
+	InvertCharacter(c);
+	cout << c << endl;
+
+	system("pause>0");
+}

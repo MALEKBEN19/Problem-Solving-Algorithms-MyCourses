@@ -1,0 +1,17 @@
+int Myfloor(float num) {
+	int Num = (int)num;
+	if (num > 0) {
+		return Num;
+	}
+	else
+		return --Num;
+	
+}
+
+
+int main() {
+	float num = -19.1;
+	cout << Myfloor(num);
+	
+	return 0;
+}

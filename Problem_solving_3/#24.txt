@@ -1,0 +1,29 @@
+string AskUserEnterLetter() {
+	string Letter = " ";
+	cout << "Please enter a letter : \n";
+	getline(cin,Letter);
+	return Letter;
+}
+
+
+void MakeEachFirstLetterToUpper(string GetString) {
+	bool firstLetter = true;
+	for (short y = 0; y < GetString.length(); y++) {
+		if (GetString[y] != ' ' && firstLetter) {
+		
+			GetString[y] = toupper(GetString[y]);
+
+		}
+		firstLetter = (GetString[y] == ' ' ? true : false);
+		
+	}
+	cout << GetString << endl;
+}
+
+
+int main(){
+
+	MakeEachFirstLetterToUpper(AskUserEnterLetter());
+
+	system("pause>0");
+}

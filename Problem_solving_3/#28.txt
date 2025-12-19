@@ -1,0 +1,20 @@
+char InvertCharacter(char Charact) {
+	return isupper(Charact) ? tolower(Charact) : toupper(Charact);
+}
+
+
+string ConvertLowerToUpperAndUpperToLower(string Text) {
+	for (int b = 0; b < Text.length(); b++) {
+		Text[b] = InvertCharacter(Text[b]);
+	}
+	return Text;
+}
+
+
+
+int main(){
+	string Text = MyLib::ReadText();
+	Text=ConvertLowerToUpperAndUpperToLower(Text);
+	cout<<Text<<endl;
+	system("pause>0");
+}

@@ -1,0 +1,57 @@
+
+void FillArrayWithRandomNumbers(int Matrix[3][3], short Rows, short Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(1,10);
+		}
+	}
+	
+}
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			printf("%0*d ",2 ,Matrix[a][x]);
+		}
+		cout << endl;
+	}
+
+
+}
+
+void PrintMilddleRow(int Arr[3][3],short FixRow,short colm) {
+	for (int x = 0; x < colm;x++) {
+		printf("%0*d ", 2, Arr[FixRow][x]);
+	}
+	cout << endl << endl;
+}
+
+void PrintMilddlecolm(int Arr[3][3], short Row, short Fixcolm) {
+	for (int x = 0; x < Row; x++) {
+		printf("%0*d ", 2, Arr[x][Fixcolm]);
+	}
+	cout << endl<<endl;
+}
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Matrix1[3][3];
+	cout << "First Random matrix : \n\n";
+
+	FillArrayWithRandomNumbers(Matrix1, 3, 3);
+	PrintMatrixElement(Matrix1, 3, 3);
+	
+
+	cout << "\nMiddle Row of matrix : \n";
+	PrintMilddleRow(Matrix1,1,3);
+
+	cout << "Middle Column of matrix : \n";
+	PrintMilddlecolm(Matrix1, 3, 1);
+	
+
+
+	system("pause>0");
+}
+

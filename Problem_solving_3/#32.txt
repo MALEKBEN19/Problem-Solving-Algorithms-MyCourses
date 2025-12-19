@@ -1,0 +1,25 @@
+
+bool CheckIfCharIsVowel(char ToCheck,char Vowels[5]) {
+	for (short x = 0; x < 5; x++) {
+		if (ToCheck == Vowels[x]) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
+int main(){
+	char Vowels[5]{ 'a','i','e','o','u'};
+	char MyChar = MyLib::ReadChar();
+
+	if (CheckIfCharIsVowel(MyChar, Vowels)) {
+		cout << "Yes Letter '"<< MyChar <<"' is Vowel\n";
+	}
+	else {
+		cout << "No Letter '" << MyChar << "' is Not Vowel\n";
+	}
+
+	system("pause>0");
+
+}

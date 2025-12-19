@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+using namespace std;
+
+
+void FillArrayWithRandomNumbers(int Arr[3][3],int Rows,int Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Arr[f][g] = MyLib::RandomNumber(1, 100);
+		}
+	}
+}
+
+void PrintArrayElement(int Arr[3][3], int Rows, int Colm) {
+	
+	cout << "The following is a 3x3 random matrix : \n";
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout << setw(3) << Arr[a][x] << "  ";
+		}
+		cout << endl;
+	}
+
+
+}
+
+int SumColumn(int arr[3][3], int Rows, int FixColm) {
+	int sum = 0;
+	for (int x = 0; x < Rows; x++) {
+		sum += arr[x][FixColm];
+	}
+	return sum;
+}
+
+
+
+void PrintSumInEachColumnInMatrix(int arr[3][3], int Rows, int Colm) {
+	cout << "\nThe sum of each column is : \n\n";
+	for (int x = 0; x < Rows; x++) {
+	cout << "Column " << x + 1 << " Sum = " << SumColumn(arr,Rows,x)<<endl;
+	}
+}
+
+
+
+int main(){
+	srand((unsigned)time(NULL));
+	int Array[3][3];
+	
+	FillArrayWithRandomNumbers(Array, 3, 3);
+	PrintArrayElement(Array, 3, 3);
+	PrintSumInEachColumnInMatrix(Array, 3, 3);
+
+
+
+	return 0;
+}

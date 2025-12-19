@@ -1,0 +1,67 @@
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(0,5);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<setw(3)<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+short CheckIfSparceMatrix(int Matrix[3][3], short Rows, short Colm) {
+	short counterZero = 0;
+	short counterDigit = 0;
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			if (Matrix[a][x]<=0) {
+				counterZero++;
+			}
+			else {
+				counterDigit++;
+			}
+		}
+
+	}
+	if (counterZero > counterDigit) {
+		return counterZero;
+	}
+	else {
+		return -1;
+	}
+	
+}
+
+
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3]{ {0,5,0},{0,5,0},{0,3,0} };
+	cout << "Matrix 1 :\n";
+
+	/*FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);*/
+	PrintMatrixElement(Mtx1, 3, 3);
+	
+		
+	if (CheckIfSparceMatrix(Mtx1,3,3)!=-1) {
+		cout << "Yes, This is a Sparse Matrix!\n";
+	}
+	else {
+		cout << "No, This is Not a Sparse Matrix!\n";
+	}
+
+	system("pause>0");
+}
+

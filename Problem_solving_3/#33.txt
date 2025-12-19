@@ -1,0 +1,22 @@
+bool CheckIfCharIsVowel(char ToCheck) {
+	ToCheck = tolower(ToCheck);
+	return (ToCheck == 'a' || ToCheck == 'i' || ToCheck == 'e' || ToCheck == 'o' || ToCheck == 'u');
+}
+
+short CountVowelsInText(string Text) {
+	
+	short Counter = 0;
+	for (short b = 0; b < Text.length(); b++) {
+		if (CheckIfCharIsVowel(Text[b]))
+		{
+			Counter++;
+	    }
+	}
+	return Counter;
+}
+
+int main() {
+
+	string MyStr = MyLib::ReadText();
+	cout << "Number of Vowels is : " << CountVowelsInText(MyStr)<<endl;
+}

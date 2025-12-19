@@ -1,0 +1,20 @@
+void PrintEverySingleWordInNewLine(string Text) {
+	
+	bool TheNewLine = true;
+	cout << "Your string words are :\n";
+	for (short b = 0; b < Text.length(); b++) {
+		if (Text[b] != ' ' && TheNewLine) {
+			cout << endl;
+		}
+		cout << Text[b];
+		TheNewLine = (Text[b] == ' ' ? true : false);
+	}
+
+}
+
+int main() {
+
+	string MyStr = MyLib::ReadText();
+	PrintEverySingleWordInNewLine(MyStr);
+	cout << "\n";
+}

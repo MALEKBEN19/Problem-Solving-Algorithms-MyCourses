@@ -1,0 +1,71 @@
+int ReadPositiveNum(string Message) {
+	int num = 0;
+	do {
+		cout << Message << endl;
+		cin >> num;
+	} while (num<=0);
+	return num;
+}
+void FillArry(int arr[100],int lenght) {
+	int counter = 0;
+	for (int i = 0; i < lenght;i+=1) {
+		counter++;
+		cout << "Element[" << counter << "] : ";
+		cin >> arr[i];
+	}
+	cout << endl;
+}
+
+string fromArrytostring(int arr[100],int lenght) {
+	
+	string fullValues = "";
+	for (int x = 0; x < lenght; x++) {
+		 fullValues=fullValues+ to_string(arr[x]);
+	}
+	return fullValues;
+}
+
+int RevesedFullvaluesIt(string fullvalue) {
+	int fullValue = stoi(fullvalue);
+	int Remiander = 0;
+	int num1 = 0;
+	while (fullValue > 0){
+		Remiander = fullValue % 10;
+		fullValue = fullValue / 10;
+		num1 = num1 * 10 + Remiander;
+	}
+	return num1;
+}
+int fullValueInInteger(int reversedValue) {
+	int Remiander = 0;
+	int num1 = 0;
+	while (reversedValue > 0) {
+		Remiander = reversedValue % 10;
+		reversedValue = reversedValue / 10;
+		num1 = num1 * 10 + Remiander;
+	}
+	return num1;
+}
+void HowManyNumberTocheckRepeatedInArry(int arr[100], int NumberToCheck,int length){
+	int counter = 0;
+	for (int g = 0; g < length; g++) {
+		if (arr[g] == NumberToCheck) {
+			counter=counter+1;
+		}
+	}
+	cout << NumberToCheck << " is repeated " << counter << " Time(s)." << endl;
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	int HowManyNumber = ReadPositiveNum("How many number do you want to add to the arry?");
+	int arr1[100];
+	FillArry(arr1,HowManyNumber);
+	int NumberToCheck = ReadPositiveNum("Enter the number that you want to check");
+	
+	cout << "Original arry " << fullValueInInteger(RevesedFullvaluesIt(fromArrytostring(arr1, HowManyNumber))) << endl;
+
+	HowManyNumberTocheckRepeatedInArry(arr1, NumberToCheck, HowManyNumber);
+
+	return 0;
+}

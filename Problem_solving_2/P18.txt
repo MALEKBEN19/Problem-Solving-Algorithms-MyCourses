@@ -1,0 +1,33 @@
+string ReadName() {
+	string Name="";
+	cout << "Please enter your name!\n";
+	cin>>Name;
+	return Name;
+}
+string EncryptedName(string &name) {
+	for (int x = 0; x <= name.length();x++) {
+		name[x] = name[x] - 2;
+	}
+	return name;
+}
+
+string DecryptedName(string &name) {
+	for (int x = 0; x <= name.length(); x++) {
+		name[x] = name[x] + 2;
+	}
+	return name;
+}
+
+
+
+int main(){
+	
+	string Name=ReadName();
+	cout << " Name before Encryption : \n " << Name << endl;
+
+	cout << " Name After Encryption : \n " << EncryptedName(Name) << endl;
+	
+	cout << " Name After Decryption : \n " << DecryptedName(Name) << endl;
+
+	return 0;
+}

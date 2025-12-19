@@ -1,0 +1,43 @@
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+int RandomNumber(int from,int to) {
+	int RandomN = rand()%(to-from+1)+from;
+	return RandomN;
+}
+string GetFourLetter(){
+	string FourLetter = "";
+	char Firsletter = RandomNumber(65,90);
+	char Secondtletter = RandomNumber(65, 90);
+	char Thirdletter = RandomNumber(65, 90);
+	char Fourthletter = RandomNumber(65, 90);
+	FourLetter = FourLetter + Firsletter;
+	FourLetter += Secondtletter;
+	FourLetter += Thirdletter;
+	FourLetter += Fourthletter;
+	return FourLetter;
+}
+void PrintKeysFromTheGenerator(int Input) {
+	int counter = 0;
+	for (int x=0; x <= Input; x++) {
+		counter++;
+		cout << "key [" << counter << "] : " 
+			<< GetFourLetter() << "-" << GetFourLetter() <<
+			"-" << GetFourLetter() << "-" << GetFourLetter() 
+			<< endl;
+	}
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	int How_many=readPositiveNumber("How many Keys do you want to generate?");
+	PrintKeysFromTheGenerator(How_many);
+
+	return 0;
+}

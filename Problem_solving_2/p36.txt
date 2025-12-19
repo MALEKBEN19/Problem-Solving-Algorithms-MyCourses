@@ -1,0 +1,31 @@
+void FillArryWithNumbersDayinamicly(int arra1[100], int &length,int &ReadNumber) {
+	
+	do {
+		cout << "\n Please enter a number ?\n";
+		cin >> arra1[length];
+		length++;
+		cout << "Do you want to add another Number? Yes[1] No[0] : ";
+		cin >> ReadNumber;
+	} while (ReadNumber != 0);
+
+
+}
+
+void PrintArry(int arr[100], int length) {
+	for (int x = 0; x<length; x++) {
+		cout<<arr[x]<<" ";
+	}
+	cout << endl;
+}
+
+
+int main() {
+	
+	int arra1[100], length = 0,ReadN=0;
+	FillArryWithNumbersDayinamicly(arra1,length,ReadN);
+	cout << "Array length : " << length << endl;
+	cout << "Arry Element : ";
+	PrintArry(arra1,length);
+	
+	return 0;
+}

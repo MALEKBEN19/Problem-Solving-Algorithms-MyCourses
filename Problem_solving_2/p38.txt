@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <cmath>
+using namespace std;
+
+enum CheckOddOrEven {odd=1,even=2};
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+CheckOddOrEven CheckOdd(int number) {
+	if (number % 2 != 0)
+		return CheckOddOrEven::odd;
+	else {
+		return CheckOddOrEven::even;
+	}
+}
+int ReadNumber() {
+	int num;
+	cout << "\nHow many element do you want? \n";
+	cin >> num;
+	return num;
+}
+
+
+
+void AddArryElement(int number,int arr[100],int &length) {
+	length++;
+	arr[length - 1] = number;
+}
+
+
+void FillArryWithRandomNumbers(int arr[100], int & length) {
+	cout << "\nHow many element do you want? \n";
+	cin >> length;
+	for (int i = 0; i < length; i += 1) {
+		arr[i] = RandomNumber(1, 100);
+	}
+}
+
+
+void PrintArry(int arr[100], int length) {
+	for (int x = 0; x< length; x++) {
+		cout<<arr[x]<<" ";
+	}
+	cout << endl;
+}
+
+void CopyOnlyOddNumbers(int ArrSource[100], int ArrDestination[100], int ArrSourceLength, int &ArrDestinationLength) {
+	for (int x = 0; x < ArrSourceLength;x++){
+		if(CheckOdd(ArrSource[x]) ==CheckOddOrEven::odd)
+		AddArryElement(ArrSource[x], ArrDestination,ArrDestinationLength);
+	}
+}
+
+
+
+int main() {
+
+srand((unsigned)time(NULL));
+int arra1[100], arra2[100], length1 = 0, length2 = 0;
+FillArryWithRandomNumbers(arra1, length1);
+
+CopyOnlyOddNumbers(arra1, arra2, length1, length2);
+
+cout << "\nArry 1 Element : ";
+PrintArry(arra1, length1);
+
+cout << "\nArry 2 Element only odd numbers! : ";
+PrintArry(arra2, length2);
+
+
+
+
+
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(0,100);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<setw(3)<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+
+
+
+
+bool IsPalindrome(int Matrix[3][3], short Fixrow, short colm) {
+	short R =  colm;
+	for (int x = 0; x < colm; x++) {
+		if (Matrix[Fixrow][x] != Matrix[Fixrow][R - 1]) {
+			return false;
+		}
+		R--;
+	}
+	return true;
+}
+
+
+bool CheckIfPalindromeMatrix(int Matrix[3][3], short row, short colm) {
+	for (int x = 0; x < row; x++) {
+		if (IsPalindrome(Matrix, x, colm)==false) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3]{ {1,2,1},{5,6,5},{7,1,7} };
+
+	cout << "Matrix 1 :\n";
+	//FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+	if (CheckIfPalindromeMatrix(Mtx1, 3, 3)) {
+		cout << "Yes, It's a Plindrome Matrix!\n";
+	}
+	else {
+		cout<< "No, It's Not a Plindrome Matrix!\n";
+	}
+
+
+	system("pause>0");
+}

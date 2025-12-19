@@ -1,0 +1,41 @@
+void FillMatrixInTransposeMethod(int Arr[3][3], int Rows, int FixColm) {
+	static int counter = 1;
+	for (int x = 0; x < Rows; x++) {
+		Arr[x][FixColm] = counter;
+		counter++;
+	}
+}
+
+void FillArrayWithOrderedNumbers(int Arr[3][3], int Rows, int Colm) {
+
+	for (int f = 0; f < Rows; f++) {
+
+		FillMatrixInTransposeMethod(Arr, Rows, f);
+
+	}
+	
+}
+void PrintMatrixElement(int Arr[3][3], int Rows, int Colm) {
+	
+	cout << "The following is a 3x3 Ordered matrix : \n";
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout << setw(1) << Arr[a][x] << "    ";
+		}
+		cout << endl;
+	}
+
+
+}
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Array[3][3];
+	FillArrayWithOrderedNumbers(Array, 3, 3);
+	PrintMatrixElement(Array, 3, 3);
+
+
+	system("pause>0");
+}
+

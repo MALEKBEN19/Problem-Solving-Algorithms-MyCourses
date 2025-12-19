@@ -1,0 +1,32 @@
+short CountCharInText(string Mystring, char MyChar) {
+	short counter = 0;
+	for (short g = 0; g < Mystring.length(); g++) {
+		if (Mystring[g] == MyChar || Mystring[g] == toupper(MyChar)) {
+			counter++;
+		}
+	}
+	return counter;
+}
+
+short CountCharInText(string Mystring, char MyChar,short N1) {
+	short counter = 0;
+	for (short g = 0; g < Mystring.length(); g++) {
+		
+		if (Mystring[g] == MyChar) {
+			counter++;
+		}
+	}
+	return counter;
+}
+
+
+int main(){
+	string Mystring= MyLib::ReadText();
+	char MyChar = MyLib::ReadChar();
+	cout << "\nLetter '" << MyChar << "' count = " << CountCharInText(Mystring,MyChar,1)<<endl;
+	cout << "\nLetter '" << MyChar <<"' Or '"<< MyLib::InvertCharacter(MyChar)  << " count = " << CountCharInText(Mystring, MyChar) << endl;
+
+	system("pause>0");
+
+
+}

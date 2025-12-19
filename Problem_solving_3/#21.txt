@@ -1,0 +1,21 @@
+void FibonacciSeries() {
+	int result = 0;
+	int variable1 = 1;
+	int variable2 = 1;
+	cout << variable1 << " " << variable2<<" ";
+	for (int x = 0; x < 8; x++){
+		result = variable1 + variable2;
+		cout << result << " ";
+		variable1 = variable2;
+		variable2 = result;
+
+	}
+}
+
+int main(){
+
+	FibonacciSeries();
+
+
+	system("pause>0");
+}

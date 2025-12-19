@@ -1,0 +1,31 @@
+
+
+string AskUserEnterLetter() {
+	string Letter = " ";
+	cout << "Please enter a letter : \n";
+	getline(cin,Letter);
+	return Letter;
+}
+
+
+void MakeEachFirstLetterToLower(string GetString) {
+	bool firstLetter = true;
+	for (short y = 0; y < GetString.length(); y++) {
+		if (GetString[y] != ' ' && firstLetter) {
+		
+			GetString[y] = tolower(GetString[y]);
+
+		}
+		firstLetter = (GetString[y] == ' ' ? true : false);
+		
+	}
+	cout << GetString << endl;
+}
+
+
+int main(){
+
+	MakeEachFirstLetterToLower(AskUserEnterLetter());
+
+	system("pause>0");
+}

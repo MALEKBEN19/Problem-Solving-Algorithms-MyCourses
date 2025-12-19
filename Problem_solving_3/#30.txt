@@ -1,0 +1,23 @@
+
+short CountHowManyTimesTheCharIsInTheText(string Text,char character) {
+	short count = 0;
+	for (short h = 0; h < Text.length(); h++) {
+		if (Text[h] == character) {
+			count++;
+		}
+	}
+	return count;
+
+}
+
+
+
+int main(){
+
+	string Text = MyLib::ReadText();
+	char GetChar = MyLib::ReadChar();
+    short count=CountHowManyTimesTheCharIsInTheText(Text, GetChar);
+	printf("Letter %c count = %d \n", GetChar, count);
+
+	system("pause>0");
+}

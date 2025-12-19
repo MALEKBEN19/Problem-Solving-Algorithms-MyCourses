@@ -1,0 +1,19 @@
+int main(){
+	srand((unsigned)time(NULL));
+	int Array[3][3];
+	for (int f = 0; f < 3; f++) {
+		for (int g = 0; g < 3;g++) {
+			Array[f][g] = MyLib::RandomNumber(1, 100);
+		}
+	}
+	cout << "The following is a 3x3 random matrix : \n";
+	for (int a = 0; a < 3; a++) {
+		for (int x = 0; x < 3; x++) {
+			cout <<setw(3)<<Array[a][x]<<setw(2)<<" ";
+		}
+		cout << endl;
+	}
+
+
+	return 0;
+}

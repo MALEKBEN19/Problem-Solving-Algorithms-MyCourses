@@ -1,0 +1,18 @@
+
+int MyCeil(float num) {
+	int Num = (int)num;
+	if (num > 0) {
+		return ++Num;
+	}
+	else
+		return Num;
+
+}
+
+
+int main() {
+	float num = -19.9;
+	cout << MyCeil(num);
+
+	return 0;
+}

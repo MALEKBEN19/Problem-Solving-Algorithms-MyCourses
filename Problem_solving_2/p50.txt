@@ -1,0 +1,21 @@
+float Mysqrt(float num) {
+	
+	for (int x = 0; x < num/2; x++) {
+		if (x * x == num) {
+			return x;
+		}
+	}
+
+
+
+
+} 
+
+
+int main() {
+
+	float num = 10;
+	cout << Mysqrt(num);
+
+	return 0;
+}

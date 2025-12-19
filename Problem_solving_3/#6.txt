@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<iomanip>
+using namespace std;
+
+void FillArrayWithOrderedNumbers(int Arr[3][3],int Rows,int Colm) {
+	int counter = 1;
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Arr[f][g] =counter;
+			counter++;
+		}
+	}
+}
+
+void PrintMatrixElement(int Arr[3][3], int Rows, int Colm) {
+	
+	cout << "The following is a 3x3 Ordered matrix : \n";
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout << setw(1) << Arr[a][x] << "    ";
+		}
+		cout << endl;
+	}
+
+}
+
+int main(){
+	srand((unsigned)time(NULL));
+	int Array[3][3];
+	FillArrayWithOrderedNumbers(Array, 3, 3);
+	PrintMatrixElement(Array, 3, 3);
+
+	system("pause>0");
+}

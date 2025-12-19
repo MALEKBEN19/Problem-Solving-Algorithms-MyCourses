@@ -1,0 +1,52 @@
+void FillArrayWithRandomNumbers(int Arr[3][3], short Rows, short Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Arr[f][g] = MyLib::RandomNumber(1,10);
+		}
+	}
+	
+}
+void PrintMatrixElement(int Arr[3][3], short Rows, short Colm) {
+	
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout << setw(3) << Arr[a][x] << "    ";
+		}
+		cout << endl;
+	}
+
+
+}
+
+void MultiplayTwoMatrixes(int Array1[3][3], int Array2[3][3], int ArrayResult[3][3],short Rows, short Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			ArrayResult[f][g] = Array1[f][g] * Array2[f][g];
+		}
+	}
+
+}
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Array1[3][3], Array2[3][3], ArrayResult[3][3];
+	cout << "First Random matrix : \n\n";
+
+	FillArrayWithRandomNumbers(Array1, 3, 3);
+	PrintMatrixElement(Array1, 3, 3);
+
+	cout << "Second Random matrix : \n\n";
+
+	FillArrayWithRandomNumbers(Array2, 3, 3);
+	PrintMatrixElement(Array2, 3, 3);
+
+	cout << "The result of two Multiplyed Matrixes : \n\n";
+	MultiplayTwoMatrixes(Array1, Array2, ArrayResult, 3, 3);
+	PrintMatrixElement(ArrayResult, 3, 3);
+	
+
+
+	system("pause>0");
+}

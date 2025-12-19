@@ -1,0 +1,70 @@
+enum enType { SmallLetters = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
+
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+
+
+char GetCharacterType(enType type) {
+	switch (type) {
+	case enType::SmallLetters:return char(RandomNumber(97, 122));
+	case enType::CapitalLetter:return char(RandomNumber(65, 90));
+	case enType::SpecialCharacter:return char(RandomNumber(33, 47));
+	case enType::Digit:return char(RandomNumber(48, 57));
+	}
+}
+string GetWord(enType type, int lenght) {
+	string word = "";
+	for (int i = 1; i <= lenght; i++) {
+		word = word + GetCharacterType(type);
+	}
+	return word;
+}
+string GetKey() {
+	string key = "";
+	key = GetWord(enType::CapitalLetter, 4) + "-";
+	key += GetWord(enType::CapitalLetter, 4) + "-";
+	key += GetWord(enType::CapitalLetter, 4) + "-";
+	key += GetWord(enType::CapitalLetter, 4);
+	return key;
+}
+
+
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+
+void FillArryWithKeys(string arr[100], int lenght) {
+	for (int i = 0; i < lenght; i ++) {
+		 arr[i] = GetKey();
+	}
+}
+
+void PrintArryWithKeys(string arr[100],int length) {
+	int counter = 0;
+	for (int f = 0; f < length; f++) {
+		counter++;
+		cout << "Arry [" << counter << "] : " << arr[f] << endl;
+	}
+}
+
+
+int main() {
+	srand((unsigned)time(NULL));
+	string arry1[100];
+	int length = 0;
+	length=readPositiveNumber("How many element do you want?");
+	FillArryWithKeys(arry1,length);
+	cout << "Arry element : \n";
+	PrintArryWithKeys(arry1,length);
+
+	
+	return 0;
+}

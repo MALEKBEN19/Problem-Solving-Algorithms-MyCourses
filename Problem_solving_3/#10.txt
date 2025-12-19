@@ -1,0 +1,49 @@
+
+void FillArrayWithRandomNumbers(int Matrix[3][3], short Rows, short Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(1,10);
+		}
+	}
+	
+}
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			printf("%0*d ",2 ,Matrix[a][x]);
+		}
+		cout << endl;
+	}
+
+
+}
+int SumOfMatrix(int Matrix[3][3], short Rows, short Colm) {
+	int sum = 0;
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			sum += Matrix[f][g];
+		}
+	}
+	return sum;
+}
+
+void PrintTheSumOfMatrix(int Matrix[3][3], short Rows, short Colm) {
+	printf("\nThe sum of Matrix is %d \n", SumOfMatrix(Matrix,Rows,Colm));
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Matrix1[3][3];
+	cout << "First Random matrix : \n\n";
+
+	FillArrayWithRandomNumbers(Matrix1, 3, 3);
+	PrintMatrixElement(Matrix1, 3, 3);
+	PrintTheSumOfMatrix(Matrix1, 3, 3);
+
+	
+	system("pause>0");
+}

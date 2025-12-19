@@ -1,0 +1,26 @@
+string AskUserEnterLetter() {
+	string Letter = " ";
+	cout << "Please enter a letter : \n";
+	getline(cin,Letter);
+	return Letter;
+}
+
+
+void PrintEachFirstLetterFromAString(string GetString) {
+	char a = ' ';
+	for (int x = 0; x < GetString.length(); x++) {
+		if (GetString.at(x)==toupper(GetString.at(x))|| GetString.at(x)==ispunct(GetString.at(x))) {
+			cout << GetString.at(x);
+		}
+		
+	}
+}
+
+
+int main(){
+
+	PrintEachFirstLetterFromAString(AskUserEnterLetter());
+
+
+	system("pause>0");
+}

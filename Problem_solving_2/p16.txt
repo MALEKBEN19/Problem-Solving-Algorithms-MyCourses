@@ -1,0 +1,10 @@
+void PrintLetterFromAtoZ() {
+
+	for (int a = 65; a <= 90; a++) {
+		for (int X = 65; X <= 90; X++) {
+			for (int f = 65; f <= 90; f++) {
+				cout << char(a) << char(X) << char(f) << endl;
+				}
+			}
+		}
+}

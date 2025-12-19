@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+using namespace std;
+
+
+void FillArrayWithRandomNumbers(int Arr[3][3],int Rows,int Colm) {
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Arr[f][g] = MyLib::RandomNumber(1, 100);
+		}
+	}
+}
+
+void PrintArrayElement(int Arr[3][3], int Rows, int Colm) {
+	
+	cout << "The following is a 3x3 random matrix : \n";
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout << setw(3) << Arr[a][x] << "  ";
+		}
+		cout << endl;
+	}
+
+
+}
+void SumEachRowInArray(vector <int>&vSum,int arr[3][3], int Rows, int Colm) {
+	int Sum = 0;
+	for (int x = 0; x < Rows; x++) {
+		for (int g = 0; g < Colm; g++) {
+			Sum += arr[x][g];
+		}
+		vSum.push_back(Sum);
+		Sum = 0;
+	}
+}
+void PrintTheSumOfEachRow(vector <int>&vSum) {
+	printf("\nThe sum of each row is : \n\n");
+	int counter = 1;
+	for (int x : vSum) {
+		cout << "Row " << counter << " Sum = " << x << endl;
+		counter++;
+	}
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Array[3][3];
+	vector <int>vSum;
+	FillArrayWithRandomNumbers(Array, 3, 3);
+	PrintArrayElement(Array, 3, 3);
+	SumEachRowInArray(vSum,Array,3,3);
+	PrintTheSumOfEachRow(vSum);
+
+	return 0;
+}
+

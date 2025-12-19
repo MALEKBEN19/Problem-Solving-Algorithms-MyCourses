@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <cmath>
+using namespace std;
+enum enType { SmallLetters = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
+
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+
+
+
+
+int readPositiveNumber(string message) {
+	int num = 0;
+	do {
+		cout << message << endl;
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+void FillArryWithRandomNumbers(int arra1[100], int &length) {
+	cout << "How many element do you want?\n";
+	cin >> length;
+
+	for (int x = 0; x < length; x++) {
+		arra1[x] = RandomNumber(1,100);
+	}
+
+}
+
+void PrintArry(int arr[100], int length) {
+	for (int x = 0; x<length; x++) {
+		cout<<arr[x]<<" ";
+	}
+	cout << endl;
+}
+bool CheckIfNumberInsideAnArry(int arr[100], int length,int searchfor) {
+	
+	for (int f = 0; f < length;f++) {
+		if (arr[f] == searchfor) {
+			return 1;
+		}
+	}
+	return 0;
+}
+int PositionOfNumber(int arr[100], int length, int searchfor) {
+	int counter = 0;
+	for (int h = 0; h < length;h++) {
+		if (arr[h] == searchfor) {
+			return counter;
+		}
+		counter++;
+	}
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	int arra1[100], length = 0,SearchFor=0;
+	FillArryWithRandomNumbers(arra1,length);
+
+	cout << "Arry 1 element :\n";
+
+	PrintArry(arra1,length);
+	SearchFor =readPositiveNumber("Please enter a number to search for?");
+	cout << "Number you are looking for is : "<< SearchFor<<endl;
+
+	if (CheckIfNumberInsideAnArry(arra1, length, SearchFor)) {
+		cout << "The number found at position : " << PositionOfNumber(arra1, length, SearchFor) << endl;
+		cout << "The number found its order : " << PositionOfNumber(arra1, length, SearchFor)+1 << endl;
+	}
+	else {
+		cout << "The number is not found :-( " << endl;
+	}
+
+
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+

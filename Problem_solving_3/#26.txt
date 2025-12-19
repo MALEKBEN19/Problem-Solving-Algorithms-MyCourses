@@ -1,0 +1,37 @@
+void ConvertAllLetterToUpper(string &letter) {
+	for (short f = 0; f < letter.length(); f++) {
+		if (letter[f] != ' ') {
+			letter[f] = toupper(letter[f]);
+		}
+	}
+}
+void ConvertAllLetterToLower(string &letter) {
+	for (short f = 0; f < letter.length(); f++) {
+		if (letter[f] != ' ') {
+			letter[f] = tolower(letter[f]);
+		}
+	}
+
+}
+
+
+
+int main(){
+	string letter = "Malek is a nice guy!";
+
+	cout << "This is before any edit! : \n";
+	cout << letter << endl<<endl;
+
+	cout << "This is after Convert it to Upper : \n";
+	ConvertAllLetterToUpper(letter);
+	cout << letter << endl<<endl;
+
+
+	cout << "This is after Convert it to Lower : \n";
+	ConvertAllLetterToLower(letter);
+	cout << letter<< endl<<endl;
+
+
+
+	system("pause>0");
+}

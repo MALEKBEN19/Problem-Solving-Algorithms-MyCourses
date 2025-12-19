@@ -1,0 +1,50 @@
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(0,100);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<setw(3)<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+bool CheckIfNumberExistInMatrix(int Matrix[3][3], short Rows, short Colm) {
+	short Check = MyLib::AskUserToEnterANumber();
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			if (Matrix[a][x] == Check) {
+				return true;
+			}
+		}
+	}
+	return 0;
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3];
+	cout << "Matrix 1 :\n";
+
+	FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+	
+	if (CheckIfNumberExistInMatrix(Mtx1, 3, 3)) {
+		cout << "Yes, It's there." << endl;
+	}else
+		cout<<"No, It's Not there."<<endl;
+
+	system("pause>0");
+}

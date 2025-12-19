@@ -1,0 +1,61 @@
+ 
+void FillArrayWithNumbersFrom0To1(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int f = 0; f < Rows; f++) {
+		for (int g = 0; g < Colm; g++) {
+			Matrix[f][g] = MyLib::RandomNumber(0,9);
+		}
+	}
+	
+}
+
+void PrintMatrixElement(int Matrix[3][3], short Rows, short Colm) {
+	
+	for (int a = 0; a < Rows; a++) {
+		for (int x = 0; x < Colm; x++) {
+			cout<<Matrix[a][x]<<"  ";
+		}
+		cout << endl;
+	}
+
+}
+
+
+bool CheckIfIScalarMatrix(int mtx1[3][3], short row, short column) {
+	int FirstDigitOfMatrix = mtx1[0][0];
+	for (int x = 0; x < row; x++) {
+		for (int g = 0; g < column; g++) {
+			if (x == g && mtx1[x][g] != FirstDigitOfMatrix) {
+				return false;
+			}
+			else if (x != g && mtx1[x][g] != 0) {
+				return false;
+			}
+
+		}
+	}
+	return true;
+}
+
+
+int main(){
+
+	srand((unsigned)time(NULL));
+	int Mtx1[3][3];
+
+	cout << "matrix : 1 \n";
+
+	FillArrayWithNumbersFrom0To1(Mtx1, 3, 3);
+	PrintMatrixElement(Mtx1, 3, 3);
+
+
+	if (CheckIfIScalarMatrix(Mtx1, 3, 3)) {
+		cout << "Yes : The Matrix is Scalar!\n";
+	}
+	else {
+		cout << "No : The Matrix isn't Scalar!\n";
+	}
+
+
+	system("pause>0");
+}

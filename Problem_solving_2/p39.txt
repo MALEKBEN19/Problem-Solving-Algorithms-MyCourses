@@ -1,0 +1,76 @@
+#include <string>
+#include <cstdlib>
+#include <cmath>
+using namespace std;
+
+enum enPrimeOrNot{Prime = 1,NotPrime=2};
+int RandomNumber(int from, int to) {
+	int RandomN = rand() % (to - from + 1) + from;
+	return RandomN;
+}
+enPrimeOrNot CheckPrimeNumber(int number) {
+	int M = round(number / 2);
+	for (int counter = 2; counter <= M;counter++) {
+		if (number % counter == 0) {
+			return enPrimeOrNot::NotPrime;
+		}
+	}
+	return enPrimeOrNot::Prime;
+}
+int ReadNumber() {
+	int num;
+	cout << "\nHow many element do you want? \n";
+	cin >> num;
+	return num;
+}
+
+void AddArryElement(int number,int arr[100],int &length) {
+	length++;
+	arr[length - 1] = number;
+}
+
+
+void FillArryWithRandomNumbers(int arr[100], int & length) {
+	length=ReadNumber();
+	for (int i = 0; i < length; i += 1) {
+		arr[i] = RandomNumber(1, 100);
+	}
+}
+
+
+void PrintArry(int arr[100], int length) {
+	for (int x = 0; x< length; x++) {
+		cout<<arr[x]<<" ";
+	}
+	cout << endl;
+}
+
+void CopyOnlyPrimeNumbers(int ArrSource[100], int ArrDestination[100], int ArrSourceLength, int &ArrDestinationLength) {
+	for (int x = 0; x < ArrSourceLength;x++){
+
+		if (CheckPrimeNumber(ArrSource[x])==enPrimeOrNot::Prime){
+			AddArryElement(ArrSource[x], ArrDestination, ArrDestinationLength);
+		}
+	
+	}
+}
+
+
+
+int main() {
+
+srand((unsigned)time(NULL));
+int arra1[100], arra2[100], length1 = 0, length2 = 0;
+FillArryWithRandomNumbers(arra1, length1);
+
+CopyOnlyPrimeNumbers(arra1, arra2, length1, length2);
+
+cout << "\nArry 1 Element : ";
+PrintArry(arra1, length1);
+
+cout << "\nArry 2 Element only Prime numbers! : ";
+PrintArry(arra2, length2);
+
+
+	return 0;
+}

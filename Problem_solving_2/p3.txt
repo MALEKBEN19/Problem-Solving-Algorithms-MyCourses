@@ -1,0 +1,41 @@
+enum enPerfectOrNotPerfect{ Perfect =1,NotPerfect =2};
+
+int ReadPositiveNumber() {
+	int num = 0;
+	do {
+		cout << "Please enter positive number!\n";
+		cin >> num;
+	} while (num <= 0);
+	return num;
+}
+
+enPerfectOrNotPerfect CheckIfPerfectOrNot(int num) {
+	int HalfNum = round(num / 2);
+	int sum = 0;
+	for (int counter = 1; counter <= HalfNum; counter++) {
+		if (num % counter == 0) {
+			sum += counter;
+		}
+	}
+	if (sum == num) {
+		return enPerfectOrNotPerfect::Perfect;
+	}
+	else {
+		return enPerfectOrNotPerfect::NotPerfect;
+	}
+}
+void PrintPerfectOrNOt(int num) {
+
+	if (CheckIfPerfectOrNot(num) == enPerfectOrNotPerfect::Perfect) {
+		cout << num << " Is a perfect Number!";
+	}
+	else {
+		cout << num << " Is not a perfect Number!";
+	}
+}
+
+int main() {
+	PrintPerfectOrNOt(ReadPositiveNumber());
+	
+	return 0;
+}
