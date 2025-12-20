@@ -35,7 +35,7 @@ int main() {
 	cout << JointText(vWords," ")<<endl;
 
 	cout << "Element of Arry After joinment! :\n";
-	cout << JointText(Arr, 3,",");
-
+	cout << JointText(Arr, 3,",")<<endl;
+        cout<<"Me";
 	system("pause>0");
 }
