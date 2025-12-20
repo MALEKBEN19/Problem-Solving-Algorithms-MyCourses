@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+#include<cctype>
+using namespace std;
+
+
+string JointText(vector <string> &vWords,string Delim) {
+	string ToJoin = "";
+	for (string& txt : vWords) {
+		ToJoin += txt + Delim;
+	}
+	return ToJoin.substr(0, ToJoin.length() - Delim.length());
+
+}
+string JointText(string Arr[100], short ArrLength,string Delim) {
+	string ToJoin = "";
+	for (short x = 0; x < ArrLength;x++) {
+		ToJoin += Arr[x] + Delim;
+	}
+	return ToJoin.substr(0, ToJoin.length() - Delim.length());
+
+}
+
+
+
+int main() {
+	vector <string> vWords{ "AbdelSamiie","AbdelJabar","Abdelmalek" };
+	string Arr[100]{ "Ba3ooouu","Roro","Waaka" };
+
+	cout << "Element of Vector After joinment! :\n";
+	cout << JointText(vWords," ")<<endl;
+
+	cout << "Element of Arry After joinment! :\n";
+	cout << JointText(Arr, 3,",");
+
+	system("pause>0");
+}
