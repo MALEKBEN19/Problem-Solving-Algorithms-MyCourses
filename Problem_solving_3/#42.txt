@@ -1,0 +1,42 @@
+vector<string> SplitString(string &Mystr,string Delim) {
+	vector <string> vWords;
+	string word = "";
+	short Postion = 0;
+	while ((Postion = Mystr.find(Delim)) != std::string::npos) {
+		word = Mystr.substr(0, Postion);
+		if (word != "") {
+			vWords.push_back(word);
+		}
+		Mystr.erase(0, Postion + Delim.length());
+	}
+	if (Mystr != "") {
+		vWords.push_back(Mystr);
+	}
+	return vWords;
+}
+
+
+string ReplaceWords(string &Text,string Replace,string &NewWord) {
+	vector<string> vTxt;
+	vTxt = SplitString(Text," ");
+	string words = "";
+	for (string& word : vTxt) {
+		if (word == Replace) {
+			word = NewWord ;
+		}
+		words += word + " ";
+	}
+	return words.substr(0, words.length() - 1);
+}
+
+
+int main() {
+	string MyWord = MyLib::ReadText();
+	string NewWord = "Ireland";
+	cout << "string Before Replace!\n";
+	cout << MyWord << endl;
+	cout << "string After Replace!\n";
+	cout << ReplaceWords(MyWord,"Algeria",NewWord)<<endl;
+
+	system("pause>0");
+}

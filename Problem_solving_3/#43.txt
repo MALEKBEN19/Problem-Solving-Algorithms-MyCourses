@@ -1,0 +1,58 @@
+vector <string> SplitText(string &Txt,string Delim) {
+	vector<string>vWords;
+	string word = "";
+	short Pos = 0;
+	while ((Pos = Txt.find(Delim)) != std::string::npos) {
+		word = Txt.substr(0, Pos);
+		if (word != "") {
+			vWords.push_back(word);
+		}
+		Txt.erase(0, Pos + Delim.length());
+	}
+	if (Txt != "") {
+		vWords.push_back(Txt);
+	}
+	return vWords;
+}
+
+string ReplaceWordInString(string Text, string Replace, string ReplaceTo, bool MatchCase = true) {
+	vector<string>vWrods;
+	vWrods = SplitText(Text, " ");
+	string MyWord="";
+	for (string& word : vWrods) {
+
+		if (MatchCase) {
+			if (word == Replace) {
+				word = ReplaceTo;
+			}
+			MyWord += word + " ";
+		}
+		else {
+			if (MyLib::ConvertAllTxtToLower(word) == MyLib::ConvertAllTxtToLower(Replace)) {
+				word = ReplaceTo;
+			}
+			MyWord += word + " ";
+		}
+	}
+	return MyWord;
+}
+
+
+int main() {
+	string MyWord = MyLib::ReadText("Please enter a Text");
+	string ToReplace = MyLib::ReadText("Which Word do You wanna Replace?");
+	string ReplaceTo = MyLib::ReadText("Which Word do You wanna Replace to?");
+	
+
+	cout << "My Original string :\n ";
+	cout << MyWord << endl;
+	cout << "Replace with Match case:\n ";
+	cout << ReplaceWordInString(MyWord,ToReplace,ReplaceTo) << endl;
+
+	cout << "Replace without Match case:\n ";
+	cout << ReplaceWordInString(MyWord, ToReplace, ReplaceTo,0) << endl;
+
+
+
+	system("pause>0");
+}
