@@ -1,0 +1,53 @@
+struct stClientData{
+	string Account_Number="";
+	short PIN_Code = 0;
+	string Name = "";
+	string Phone = "";
+	double Account_Blance = 0;
+};
+
+vector <stClientData> GetClientData(){
+	stClientData Client;
+	vector<stClientData>vClient;
+
+	cout << "Please enter Client Data : \n\n";
+
+	cout << "Enter Account Number : ";
+	cin >> Client.Account_Number;
+
+	cout << "Enter Pin Code: ";
+	cin >> Client.PIN_Code;
+
+	cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+	cout << "Enter Name : ";
+	getline(cin, Client.Name);
+	
+	cout << "Enter Phone : ";
+	cin >> Client.Phone;
+
+	cout << "Enter Account Balance : ";
+	cin >> Client.Account_Blance;
+
+	vClient.push_back(Client);
+	return vClient;
+}
+
+
+string JoinText(const vector<stClientData>&vClient,string Sperator) {
+	string ConcatenateTxt = "";
+	cout << "\n\nClient Record for Saving is : \n";
+	for (stClientData client : vClient) {
+		ConcatenateTxt += client.Account_Number + Sperator + to_string(client.PIN_Code) + Sperator + client.Name + Sperator + client.Phone + Sperator + to_string(client.Account_Blance);
+	}
+	return ConcatenateTxt;
+}
+
+
+
+int main() {
+
+	cout<<JoinText(GetClientData(),"_||_");
+
+	system("pause>0");
+}
+
