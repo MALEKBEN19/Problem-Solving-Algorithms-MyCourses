@@ -1,0 +1,57 @@
+struct stClientData{
+	string Account_Number="";
+	string PIN_Code="";
+	string Name="";
+	string Phone="";
+	double Account_Blance=0;
+};
+
+vector<string>SplitText(string &txt, string Delim = "#//#") {
+	vector<string>vWords;
+	string word = "";
+	short pos = 0;
+	while ((pos = txt.find(Delim)) != std::string::npos) {
+		word = txt.substr(0, pos);
+		if (word != "") {
+			vWords.push_back(word);
+		}
+		txt.erase(0, pos + Delim.length());
+	}
+	if (txt != "") {
+		vWords.push_back(txt);
+	}
+	return vWords;
+}
+
+stClientData FillStructWithVecotrElement(vector<string>&vWords) {
+	stClientData client;
+	client.Account_Number = vWords[0];
+	client.PIN_Code = vWords[1];
+	client.Name = vWords[2];
+	client.Phone = vWords[3];
+	client.Account_Blance = stof(vWords[4]);
+	return client;
+}
+void PrintClientInfo(stClientData &client) {
+	cout << "Account Number : " << client.Account_Number << endl;
+	cout << "Pin code  : " << client.PIN_Code << endl;
+	cout << "Name: " << client.Name << endl;
+	cout << "Phone : " << client.Phone << endl;
+	cout << "Account Balance : " << client.Account_Blance << endl;
+}
+
+
+
+
+int main() {
+	string Record = "A150#//#2342#//#Mohammed Abu-Hadhoud#//#0779945#//#50434.00000";
+	cout << "Line Record is :\n";
+	cout << Record << endl;
+	vector<string>vRecord=SplitText(Record);
+	stClientData Client=FillStructWithVecotrElement(vRecord);
+
+	cout << "\nThe following is the extracted client Record : \n\n";
+	PrintClientInfo(Client);
+
+	system("pause>0");
+}
