@@ -1,0 +1,22 @@
+string RemovePunct(string Txt) {
+	string AllString = "";
+	for (short b = 0; b < Txt.length(); b++) {
+		if (!ispunct(Txt[b])) {
+			AllString += Txt[b];
+		}
+	}
+	return AllString;
+}
+
+
+
+int main() {
+	string MyWord = MyLib::ReadText("Please enter a Text");
+	cout << "Original String : \n";
+	cout << MyWord<<endl;
+	cout << "Punctuation Removed : \n";
+	cout<<RemovePunct(MyWord) << endl;
+
+
+	system("pause>0");
+}
