@@ -1,0 +1,80 @@
+struct stClientData{
+	string Account_Number="";
+	string PIN_Code="";
+	string Name="";
+	string Phone="";
+	double Account_Blance=0;
+};
+
+stClientData GetInfoFromClient() {
+	stClientData Client;
+	cout << "Adding New Client :\n\n";
+	cout << "Enter Account Number : ";
+	getline(cin, Client.Account_Number);
+
+	cout << "Enter Pin code : ";
+	getline(cin, Client.PIN_Code);
+
+	cout << "Enter Name : ";
+	getline(cin, Client.Name);
+
+	cout << "Enter Phone : ";
+	getline(cin, Client.Phone);
+
+	cout << "Enter Account Balance : ";
+	cin>> Client.Account_Blance;
+
+	return Client;
+}
+
+
+string ConvertRecordToLine(stClientData &Client,string Sperator="#//#") {
+	string ToConvert = "";
+	
+	ToConvert += Client.Account_Number + Sperator;
+	ToConvert += Client.PIN_Code + Sperator;
+	ToConvert += Client.Name + Sperator;
+	ToConvert += Client.Phone + Sperator;
+	ToConvert += to_string(Client.Account_Blance);
+	return ToConvert;
+}
+
+
+void AddRecordToFile(string FileName,string Record) {
+	fstream Myfile;
+	Myfile.open(FileName, ios::out | ios::app);
+	if (Myfile.is_open()) {
+		Myfile << Record << endl;
+	}
+	Myfile.close();
+
+}
+
+void Clear() {
+	system("color 0F");
+	system("cls");
+}
+
+void AddClientToTheSystem() {
+	stClientData client;
+	string Record = "";
+	char Again = 'y';
+	do {
+		Clear();
+		client = GetInfoFromClient();
+		Record = ConvertRecordToLine(client);
+		AddRecordToFile("MyFile.txt",Record);
+		cout << "\nClient Added Successfully, do you want to Add More? (Y/n) ";
+		cin >> Again;
+	} while (Again == 'y' || Again == 'Y');
+	Clear();
+}
+
+
+int main() {
+
+	AddClientToTheSystem();
+
+	system("pause>0");
+}
+
