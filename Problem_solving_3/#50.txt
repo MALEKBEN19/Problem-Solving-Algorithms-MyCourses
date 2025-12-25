@@ -1,0 +1,147 @@
+struct stClientData{
+	string Account_Number="";
+	string PIN_Code="";
+	string Name="";
+	string Phone="";
+	double Account_Blance=0;
+};
+
+vector <string> SplitText(string Txt, string Delim) {
+	string word = "";
+	vector<string>vWord;
+	short Pos = 0;
+	while ((Pos = Txt.find(Delim)) != std::string::npos) {
+		word = Txt.substr(0, Pos);
+		if (word != "") {
+			vWord.push_back(word);
+		}
+		Txt.erase(0, Pos + Delim.length());
+	}
+	if (Txt != "")
+	{
+		vWord.push_back(Txt);
+	}
+	return vWord;
+}
+
+
+stClientData ConvertLineToRecord(string Line,string sperator="#//#"){
+	vector<string>vConvert;
+	vConvert = SplitText(Line, sperator);
+	stClientData client;
+	client.Account_Number = vConvert.at(0);
+	client.PIN_Code = vConvert.at(1);
+	client.Name = vConvert.at(2);
+	client.Phone = vConvert.at(3);
+	client.Account_Blance = stod(vConvert.at(4));
+	return client;
+}
+
+vector<stClientData>  LoadDataFromFile(string file) {
+	vector<stClientData>vClient;
+	
+	fstream Myfile;
+	Myfile.open(file, ios::in);
+	if (Myfile.is_open()) {
+		stClientData client;
+		string line;
+		while(getline(Myfile, line)){
+			client = ConvertLineToRecord(line);
+			vClient.push_back(client);
+			
+		}
+		Myfile.close();
+	}
+	return vClient;
+}
+
+void PrintClient(stClientData client) {
+	cout << "\nThe following Are the Client details :\n\n";
+	cout << "Account Number : " << client.Account_Number << endl;
+	cout << "Pin Code : " << client.PIN_Code << endl;
+	cout << "Name : " << client.Name << endl;
+	cout << "Phone : " << client.Phone << endl;
+	cout << "Account Balance : " << client.Account_Blance << endl;
+}
+bool CheckIfClientExist(string &Check,stClientData &clients) {
+	vector<stClientData>vClient = LoadDataFromFile(ClientFile);
+	short Num = 0;
+	for (stClientData client : vClient) {
+		if (client.Account_Number == Check) {
+			clients = client;
+			return 1;
+		}
+	}
+	return 0;
+	
+}
+vector<string> LoadtFmFile(string file) {
+	vector<string>vRowData;
+	fstream Myfile;
+	Myfile.open(file, ios::in);
+	if (Myfile.is_open()) {
+		string line;
+		while (getline(Myfile, line)) {
+			vRowData.push_back(line);
+		}
+	}
+	return vRowData;
+}
+
+void SaveVectorToFile(string file,vector<string>vClient) {
+	fstream Myfile;
+	Myfile.open(file, ios::out);
+	if (Myfile.is_open()) {
+		for (string& Line : vClient) {
+			if (Line != "") {
+				Myfile << Line << endl;
+			}
+		}
+	}
+}
+
+
+void DeletClientFromFile(string CheckAccount,stClientData &client) {
+	vector<string>vClient = LoadtFmFile(ClientFile);
+	fstream Myfile;
+	bool Exist = true;
+	for (string& clt : vClient) {
+		if (CheckIfClientExist(CheckAccount, client)&&Exist) {
+			clt = "";
+		}
+		Exist = false;
+	}
+	SaveVectorToFile(ClientFile, vClient);
+	cout << "Client Deleted successfully.\n";
+}
+
+
+void AskUserIfDelet() {
+	char dlt = 'N';
+	string CheckAccount = MyLib::ReadText("Please enter Account Number?");
+	stClientData client;
+	if (CheckIfClientExist(CheckAccount, client)) {
+		PrintClient(client);
+		dlt=MyLib::ReadChar("\nAre You sure You want to delete this client? (Y/n)");
+		if (toupper(dlt) == 'Y') {
+			DeletClientFromFile(CheckAccount,client);
+		}
+		else {
+			system("cls");
+			
+		}
+		cout << "See you soon!";
+	}
+	else {
+		cout << "Client <" << CheckAccount << "> doesn't exist On the system!\n";
+	}
+}
+
+
+
+int main() {
+	AskUserIfDelet();
+	
+	system("pause>0");
+	return 0;
+}
