@@ -1,0 +1,91 @@
+const string ClientFile = "Client.txt";
+
+struct stClientData{
+	string Account_Number="";
+	string PIN_Code="";
+	string Name="";
+	string Phone="";
+	double Account_Blance=0;
+};
+
+vector <string> SplitText(string Txt, string Delim) {
+	string word = "";
+	vector<string>vWord;
+	short Pos = 0;
+	while ((Pos = Txt.find(Delim)) != std::string::npos) {
+		word = Txt.substr(0, Pos);
+		if (word != "") {
+			vWord.push_back(word);
+		}
+		Txt.erase(0, Pos + Delim.length());
+	}
+	if (Txt != "")
+	{
+		vWord.push_back(Txt);
+	}
+	return vWord;
+}
+
+
+stClientData ConvertLineToRecord(string Line,string sperator="#//#"){
+	vector<string>vConvert;
+	vConvert = SplitText(Line, sperator);
+	stClientData client;
+	client.Account_Number = vConvert.at(0);
+	client.PIN_Code = vConvert.at(1);
+	client.Name = vConvert.at(2);
+	client.Phone = vConvert.at(3);
+	client.Account_Blance = stod(vConvert.at(4));
+	return client;
+}
+
+vector<stClientData>  LoadDataFromFile(string file) {
+	vector<stClientData>vClient;
+	
+	fstream Myfile;
+	Myfile.open(file, ios::in);
+	if (Myfile.is_open()) {
+		stClientData client;
+		string line;
+		while(getline(Myfile, line)){
+			client = ConvertLineToRecord(line);
+			vClient.push_back(client);
+			
+		}
+		Myfile.close();
+	}
+	return vClient;
+}
+
+void PrintClient(stClientData client) {
+	cout << "\nThe following Are the Client details :\n\n";
+	cout << "Account Number : " << client.Account_Number << endl;
+	cout << "Pin Code : " << client.PIN_Code << endl;
+	cout << "Name : " << client.Name << endl;
+	cout << "Phone : " << client.Phone << endl;
+	cout << "Account Balance : " << client.Account_Blance << endl;
+}
+void CheckIfClientExist(string &Check) {
+	vector<stClientData>vClient = LoadDataFromFile(ClientFile);
+	short Num = 0;
+	for (stClientData client : vClient) {
+		if (client.Account_Number == Check) {
+			PrintClient(client);
+			Num++;
+		}
+	}
+	if (Num != 1) {
+		cout << "Client with Account Number (" << Check << ") Not found!\n";
+	}
+	
+}
+
+
+int main() {
+
+	string ToCheck = MyLib::ReadText("Please enter Account Number?");
+	CheckIfClientExist(ToCheck);
+
+	system("pause>0");
+	return 0;
+}
