@@ -1,0 +1,172 @@
+const string ClientFile = "Client.txt";
+
+struct stClientData{
+	string Account_Number="";
+	string PIN_Code="";
+	string Name="";
+	string Phone="";
+	double Account_Blance=0;
+	bool MarkClient = false;
+};
+
+vector <string> SplitText(string Line,string Delim) {
+	string word;
+	vector<string>vWord;
+	short Postion = 0;
+	while ((Postion = Line.find(Delim)) != std::string::npos) {
+		word = Line.substr(0, Postion);
+		if (word != "") {
+			vWord.push_back(word);
+		}
+		Line.erase(0, Postion + Delim.length());
+
+	}
+	if (Line != "") {
+		vWord.push_back(Line);
+	}
+
+	return vWord;
+}
+
+stClientData ConvertLineToRecord(string Line,string sperator="#//#") {
+	vector<string>vWord;
+	stClientData client;
+	vWord = SplitText(Line,sperator);
+	client.Account_Number = vWord.at(0);
+	client.PIN_Code = vWord.at(1);
+	client.Name = vWord.at(2);
+	client.Phone = vWord.at(3);
+	client.Account_Blance = stod(vWord.at(4));
+	return client;
+}
+
+vector<stClientData>LoadDataFromFile(string file) {
+	vector<stClientData> vClient;
+	fstream Myfile;
+	Myfile.open(file, ios::in);
+	if (Myfile.is_open()) {
+		string GetLine;
+		stClientData client;
+		while (getline(Myfile, GetLine)) {
+			client = ConvertLineToRecord(GetLine);
+			vClient.push_back(client);
+		}
+	}
+	return vClient;
+}
+
+string GetAccountNumber() {
+	string account;
+	cout << "Please enter account Number? ";
+	getline(cin >> ws, account);
+	return account;
+}
+
+bool FindClientByAccountNumber(string AccountNumber,vector<stClientData>&vClient,stClientData &client) {
+	for (stClientData & clt : vClient) {
+		if (clt.Account_Number == AccountNumber) {
+			client = clt;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void PrintClientByAccountNumber(stClientData client) {
+	cout << "\nThe following are the client details :\n\n";
+	cout << "Account Number : " << client.Account_Number << endl;
+	cout << "Pin Code : " << client.PIN_Code << endl;
+	cout << "Name : " << client.Name << endl;
+	cout << "Phone : " << client.Phone << endl;
+	cout << "Account Balance : " << client.Account_Blance << endl;
+}
+
+void UpdateClient(stClientData& client) {
+	cout << "Enter Pin code : ";
+	getline(cin >> ws, client.PIN_Code);
+
+	cout << "Enter Name : ";
+	getline(cin >> ws, client.Name);
+
+	cout << "Enter Phone : ";
+	getline(cin >> ws, client.Phone);
+
+	cout << "Enter account balance : ";
+	cin >> client.Account_Blance;
+
+}
+
+
+bool MakeAnUpdateInsideVector(vector<stClientData>&vClient,string accountNumber) {
+	for (stClientData &clt : vClient) {
+		if (clt.Account_Number == accountNumber) {
+			UpdateClient(clt);
+			return true;
+		}
+	}
+	return false;
+
+}
+
+string ConvertRecordToLine(stClientData client,string Sperator="#//#") {
+	string Line = "";
+	Line += client.Account_Number + Sperator;
+	Line += client.PIN_Code + Sperator;
+	Line += client.Name + Sperator;
+	Line += client.Phone + Sperator;
+	Line += to_string(client.Account_Blance);
+	return Line;
+}
+
+void SaveVectorToFile(vector<stClientData>&vClient,string file) {
+	fstream Myfile;
+	Myfile.open(file, ios::out);
+	if (Myfile.is_open()) {
+		string MyLine;
+		for (stClientData &clt : vClient) {
+		     MyLine = ConvertRecordToLine(clt);
+		     Myfile << MyLine << endl;
+		}
+		Myfile.close();
+	}
+}
+
+bool UpdateClientByAccountNumber(vector<stClientData>&vClient,string AccountNumber) {
+	stClientData client;
+	char answer = 'y';
+	if (FindClientByAccountNumber(AccountNumber, vClient, client)) {
+		PrintClientByAccountNumber(client);
+		cout << "\nAre you sure do you want to Update this account? (Y/N) ";
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y') {
+			MakeAnUpdateInsideVector(vClient, AccountNumber);
+			SaveVectorToFile(vClient, ClientFile);
+			cout << "Client Updated successfully.";
+			vClient = LoadDataFromFile(ClientFile);
+			return true;
+		}
+		
+	}
+	else {
+		cout << "Client with account Number (" << AccountNumber << ") Not found!\n";
+	}
+
+	return false;
+}
+
+//Before Main Function!
+
+int main() {
+
+	vector<stClientData>vClient=LoadDataFromFile(ClientFile);
+	string AccountNum = GetAccountNumber();
+	UpdateClientByAccountNumber(vClient, AccountNum);
+
+	system("pause>0");
+	return 0;
+}
+
+
+//After MainFunction!
+
