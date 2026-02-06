@@ -1,0 +1,84 @@
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+stDay GetFullDate() {
+	stDay Date;
+	Date.Day = Getday();
+	Date.Month = GetMonth();
+	Date.Year = GetYear();
+
+	return Date;
+}
+
+
+
+int GetdaysToAddToADate() {
+	int dayByUser = 0;
+	printf("Please enter a Number of days that you want to add?  ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+short CountFromTheBgOfYear(short Year,short month,short Day) {
+	short NumberofDays = 0;
+	for (short i = 1; i <= month - 1;i++) {
+		NumberofDays += MyLib::NumberOfDaysInMonth(Year, i);
+
+	}
+	NumberofDays += Day;
+	return NumberofDays;
+}
+
+
+bool CompareTwoDates(stDay Date1,stDay Date2) {
+	return(CountFromTheBgOfYear(Date1.Year, Date1.Month, Date1.Day) < CountFromTheBgOfYear(Date2.Year, Date2.Month, Date2.Day) && Date1.Year <= Date2.Year);
+}
+
+
+
+int main() {
+
+	cout << "Date 1 : \n";
+	stDay Date1= GetFullDate();
+	cout << "\n\n";
+	cout << "Date 2 : \n";
+	stDay Date2= GetFullDate();
+
+	if (CompareTwoDates(Date1, Date2)) {
+		cout << "Yes, Date 1 is Less than Date 2.\n";
+	}
+	else {
+		cout << "No, Date 1 is Not Less than Date 2.\n";
+	}
+
+
+
+	system("pause>0");
+	return 0;
+}

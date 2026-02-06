@@ -1,0 +1,264 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+#include<cctype>
+#include<fstream>
+#include<ctime>
+# pragma warning ( disable : 4996 );
+
+using namespace std;
+
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+
+
+
+bool CheckIfLastDayInMonth(stDay Date) {
+	short GetDaysInMonth = MyLib::NumberOfDaysInMonth(Date.Year, Date.Month);
+	return (GetDaysInMonth == Date.Day ? true : false);
+}
+
+bool CheckIfLastMonthInYear(short Month) {
+	return (Month == 12 ? true : false);
+}
+
+
+
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+
+
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+bool AreDatesEqual(stDay Date1, stDay Date2) {
+	return ((Date1.Year == Date2.Year) ? ((Date1.Month == Date2.Month) ? ((Date1.Day == Date2.Day) ? true : false) : false) : false);
+}
+
+stDay GetFullDate() {
+	stDay Date;
+	Date.Day = Getday();
+	Date.Month = GetMonth();
+	Date.Year = GetYear();
+
+	return Date;
+}
+
+bool IsDate1BeforeDate2( stDay Date1 , stDay Date2) {
+	return ((Date1.Year < Date2.Year) ? true : (Date1.Year == Date2.Year) ? (Date1.Month < Date2.Month) ? true : (Date1.Month == Date2.Month ? Date1.Day < Date2.Day : false) : false);
+
+}
+
+
+stDay IncressDateByOneDay(stDay Date) {
+	if (CheckIfLastDayInMonth(Date)) {
+		if (CheckIfLastMonthInYear(Date.Month)) {
+			Date.Day = 1;
+			Date.Month = 1;
+			Date.Year++;
+		}
+		else {
+			Date.Day = 1;
+			Date.Month++;
+		}
+
+	}
+	else {
+		Date.Day++;
+	}
+	return Date;
+}
+
+void SwapDates(stDay &Date1, stDay &Date2) {
+	stDay tempDate;
+	tempDate.Year = Date1.Year;
+	tempDate.Month = Date1.Month;
+	tempDate.Day = Date1.Day;
+
+	Date1.Year = Date2.Year;
+	Date1.Month = Date2.Month;
+	Date1.Day = Date2.Day;
+
+	Date2.Year = tempDate.Year;
+	Date2.Month = tempDate.Month;
+	Date2.Day = tempDate.Day;
+
+
+}
+
+
+int CountDifferencesBetweenTwoDates(stDay Date1, stDay Date2, bool IncludeLastDay = false)
+{
+	int DaysDiff = 0;
+	short SwapFlagValue = 1;
+	if (!IsDate1BeforeDate2(Date1, Date2)) {
+		SwapDates(Date1, Date2);
+		SwapFlagValue = -1;
+	}
+
+	while (IsDate1BeforeDate2(Date1, Date2)) {
+		DaysDiff++;
+		Date1 = IncressDateByOneDay(Date1);
+	}
+	return IncludeLastDay ? ++DaysDiff*SwapFlagValue : DaysDiff * SwapFlagValue;
+}
+
+
+
+string ConvertstructDateToString(stDay date) {
+	string Datetostr = to_string(date.Day) + "/" + to_string(date.Month) + "/" + to_string(date.Year);
+	return Datetostr;
+}
+
+
+stDay IncressDateBy10Days(stDay date) {
+	for (short x = 1; x <= 10; x++)
+		date=IncressDateByOneDay(date);
+	return date;
+}
+stDay IncressDateBy1week(stDay date) {
+	for (short x = 1; x <= 7; x++)
+		date = IncressDateByOneDay(date);
+	return date;
+}
+
+
+
+stDay IncressDateBy10weeks(stDay date) {
+	for (short x = 1; x <= 10; x++)
+		date = IncressDateBy1week(date);
+	return date;
+}
+stDay IncressDateBy1Month(stDay date) {
+	for (short x = 1; x <= 4; x++)
+		date = IncressDateBy1week(date);
+	return date;
+}
+
+stDay IncressDateBy5Months(stDay date) {
+	for (short x = 1; x <= 5; x++)
+		date = IncressDateBy1Month(date);
+	return date;
+}
+
+stDay IncressDateBy1Year(stDay date) {
+	for (short x = 1; x <= 12; x++)
+		date = IncressDateBy1Month(date);
+	return date;
+}
+
+stDay IncressDateBy10Year(stDay date) {
+	for (short x = 1; x <= 10; x++)
+		date = IncressDateBy1Year(date);
+	return date;
+}
+stDay IncressDateBy10YearsFaster(stDay date) {
+	return IncressDateBy10Year(date);
+}
+
+stDay IncressDateBy1Decade(stDay date) {
+	return IncressDateBy10YearsFaster(date);
+}
+
+stDay IncressDateBy10Decades(stDay date) {
+	for (short x = 1; x <= 10; x++)
+		date = IncressDateBy1Decade(date);
+	return date;
+}
+
+stDay IncressDateBy10DecadesFaster(stDay date) {
+	return IncressDateBy10Decades(date);
+}
+
+stDay IncressDateBy1Century(stDay date) {
+	return IncressDateBy10DecadesFaster(date);
+}
+
+stDay IncressDateBy1Millennuim(stDay date) {
+
+	for (short x = 1; x <= 10; x++)
+		date = IncressDateBy1Century(date);
+
+	return date;
+}
+
+int main() {
+
+
+	cout << "Date 1 : \n\n";
+	stDay Date1= GetFullDate();
+
+	stDay DateAdding1Day = IncressDateByOneDay(Date1);
+
+	stDay DateAdding10Day = IncressDateBy10Days(DateAdding1Day);
+
+	stDay DateAdding1week = IncressDateBy1week(DateAdding10Day);
+
+	stDay DateAdding10weeks = IncressDateBy10weeks(DateAdding1week);
+
+	stDay DateAdding1Month= IncressDateBy1Month(DateAdding10weeks);
+
+	stDay DateAdding5Months = IncressDateBy5Months(DateAdding1Month);
+
+	stDay DateAdding1Year = IncressDateBy1Year(DateAdding5Months);
+
+	stDay DateAdding10Year = IncressDateBy10Year(DateAdding1Year);
+
+	stDay DateAdding10Yearfaster = IncressDateBy10YearsFaster(DateAdding10Year);
+
+	stDay DateAdding1decade = IncressDateBy1Decade(DateAdding10Yearfaster);
+
+	stDay DateAdding10decades = IncressDateBy10Decades(DateAdding1decade);
+
+	stDay DateAdding10decadesfaster = IncressDateBy10DecadesFaster(DateAdding10decades);
+
+	stDay DateAdding1Century = IncressDateBy1Century(DateAdding10decadesfaster);
+
+	stDay DateAdding1Millennuim = IncressDateBy1Millennuim(DateAdding1Century);
+
+
+	cout  <<setw(5) << "\n";
+	cout  <<setw(5) << "1-Incress Date by one day	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding1Day) << endl;
+	cout  <<setw(5) << "2-Incress Date by 10 days	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding10Day) << endl;
+	cout  <<setw(5) << "3-Incress Date by one week	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding1week) << endl;
+	cout  <<setw(5) << "4-Incress Date by 10 week	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding10weeks) << endl;
+	cout  <<setw(5) << "5-Incress Date by 1 month	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding1Month)<< endl;
+	cout  <<setw(5) << "6-Incress Date by 5 months	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding5Months)<< endl;
+	cout  <<setw(5) << "7-Incress Date by 1 year	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding1Year)<< endl;
+	cout  <<setw(5) << "8-Incress Date by 10 year	: "			 <<setw(10)<< ConvertstructDateToString(DateAdding10Year)<< endl;
+	cout  <<setw(5) << "9-Incress Date by 10 year (faster) :"	 <<setw(8) << ConvertstructDateToString(DateAdding10Yearfaster)<< endl;
+	cout  <<setw(5) << "10-Incress Date by 1 decade	 "	         <<setw(11)<< ConvertstructDateToString(DateAdding1decade)<< endl;
+	cout  <<setw(5) << "11-Incress Date by 10 decades : "		 <<setw(12)<<	ConvertstructDateToString(DateAdding10decades)<< endl;
+	cout  <<setw(5) << "12-Incress Date by 10 decades (faster): "<<setw(4) << ConvertstructDateToString(DateAdding10decadesfaster)<< endl;
+	cout  <<setw(5) << "13-Incress Date by one century	: " 	 <<setw(10)<<	ConvertstructDateToString(DateAdding1Century)<< endl;
+	cout  <<setw(5) << "14-Incress Date by one millennium  : " 	 <<setw(7)	<<	ConvertstructDateToString(DateAdding1Millennuim)<< endl;
+														   
+
+	system("pause>0");
+	return 0;
+}
+
+                                                                                                                                           
+

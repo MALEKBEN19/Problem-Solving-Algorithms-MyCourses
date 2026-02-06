@@ -1,0 +1,49 @@
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+
+short CountFromTheBgOfYear(short Year,short month,short Day) {
+	int counter = 0;
+	string DateToString = "";
+	string DateByUser= to_string(Year) + "." + to_string(month) + "." + to_string(Day);
+	for (int M=1;M!=12;M++) {
+		for (int d = 1; d <= MyLib::NumberOfDaysInMonth(Year, M); d++) {
+			DateToString = to_string(Year) + "." + to_string(M) + "." + to_string(d);
+			counter++;
+			if (DateToString == DateByUser) {
+				return counter;
+			}
+			DateToString = "";
+		}
+	}
+
+
+}
+
+
+int main() {
+
+	cout<<"\nNumber of Days from the begging of the year is : "<<CountFromTheBgOfYear(GetYear(), GetMonth(), Getday())<<" day!";
+
+	system("pause>0");
+	return 0;
+}

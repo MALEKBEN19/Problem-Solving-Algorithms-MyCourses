@@ -1,0 +1,47 @@
+int OverLapDaysCount(stPeriod Period1,stPeriod Period2) {
+	int DaysOverlap = 0;
+	if (IsDateWithinPeriodDoctorSolution(Period1,Period2.DateStart)) {
+		while (IsDate1BeforeDate2(Period1.DateStart,Period1.DateEnd)) {
+			if (IsDate1EqualDate2(Period1.DateStart,Period2.DateStart)) {
+
+				if (!IsDate1EqualDate2(Period2.DateStart,Period2.DateEnd)) {
+					Period2.DateStart = IncressDateByOneDay(Period2.DateStart);
+				}
+				DaysOverlap++;
+			}
+			Period1.DateStart=IncressDateByOneDay(Period1.DateStart);
+		}
+	}
+
+	if (IsDateWithinPeriodDoctorSolution(Period2, Period1.DateStart)) {
+		while (IsDate1BeforeDate2(Period2.DateStart, Period2.DateEnd)) {
+			if (IsDate1EqualDate2(Period2.DateStart, Period1.DateStart)) {
+				if (!IsDate1EqualDate2(Period1.DateStart, Period1.DateEnd)) {
+					Period1.DateStart = IncressDateByOneDay(Period1.DateStart);
+				}
+				DaysOverlap++;
+			}
+			Period2.DateStart = IncressDateByOneDay(Period2.DateStart);
+		}
+	}
+	return DaysOverlap;
+}
+
+
+int main() {
+	stPeriod Period1,Period2;
+	stDate DateToCheck;
+	cout << "Enter period 1 : \n";
+	Period1 = ReadPeriods();
+
+	cout << "Enter period 2 : \n";
+	Period2 = ReadPeriods();
+
+
+	cout << "Overlap Days count is : " << OverLapDaysCount(Period1,Period2) << endl;
+
+
+
+	system("pause>0");
+	return 0;
+}

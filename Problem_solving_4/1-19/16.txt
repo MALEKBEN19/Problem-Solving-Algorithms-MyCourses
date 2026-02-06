@@ -1,0 +1,78 @@
+
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+
+
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+
+
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+stDay GetFullDate() {
+	stDay Date;
+	Date.Day = Getday();
+	Date.Month = GetMonth();
+	Date.Year = GetYear();
+
+	return Date;
+}
+
+
+
+int GetdaysToAddToADate() {
+	int dayByUser = 0;
+	printf("Please enter a Number of days that you want to add?  ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+void IncressDateByOneDay(stDay &Date) {
+	short GetAllDaysInMonth = Lib2::NumberOfDaysInMonth(Date.Year, Date.Month);
+	if (Date.Day != GetAllDaysInMonth) {
+		Date.Day++;
+	}
+	else {
+		Date.Day = 1;
+		Date.Month++;
+		if (Date.Month > 12) {
+			Date.Month = 1;
+			Date.Year++;
+		}
+	}
+}
+
+
+int main() {
+
+	cout << "Date 1 : \n";
+	stDay Date1= GetFullDate();
+	cout << "\n";
+	IncressDateByOneDay(Date1);
+	cout << "Date After Adding one Day : " << Date1.Day<<"/"<<Date1.Month<<"/"<<Date1.Year<<endl;
+
+	system("pause>0");
+	return 0;
+}

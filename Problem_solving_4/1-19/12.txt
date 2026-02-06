@@ -1,0 +1,87 @@
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+short GetdaysToAddToADate() {
+	short dayByUser = 0;
+	printf("Please enter a Number of days that you want to add?  ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+short CountFromTheBgOfYear(short Year,short month,short Day) {
+	short NumberofDays = 0;
+	for (short i = 1; i <= month - 1;i++) {
+		NumberofDays += MyLib::NumberOfDaysInMonth(Year, i);
+
+	}
+	NumberofDays += Day;
+	return NumberofDays;
+}
+
+
+stDay AddDaysToADate(short NumberOfDys,short Year,short Month,short Days) {
+	stDay Day;
+	Day.Year = Year;
+	Day.Month = Month;
+	short RemainingDays = NumberOfDys + Days;
+	short GetDays = 0;
+	while (true) {
+		GetDays = MyLib::NumberOfDaysInMonth(Day.Year, Day.Month);
+		if (RemainingDays > GetDays) {
+			RemainingDays -= GetDays;
+			Day.Month++;
+			if (Day.Month == 1 && Month != 1) {
+				Day.Year++;
+			}
+		}
+		else {
+			Day.Day = RemainingDays;
+			break;
+		}
+
+
+	}
+
+	return Day;
+
+}
+
+int main() {
+
+
+	short ReadDay = Getday();
+	short ReadMonth = GetMonth();
+	short ReadYear = GetYear();
+	short NumberOfDaysFromUsr = GetdaysToAddToADate();
+
+	stDay Date=AddDaysToADate(NumberOfDaysFromUsr, ReadYear, ReadMonth, ReadDay);
+
+
+	cout << "Date Affter Adding [" << NumberOfDaysFromUsr << "] Days is : " << Date.Day << "/" << Date.Month << "/" << Date.Year << endl;
+
+	system("pause>0");
+	return 0;
+}

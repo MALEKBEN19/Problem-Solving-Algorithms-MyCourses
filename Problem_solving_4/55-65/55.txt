@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include<random>
+#include<iomanip>
+#include<vector>
+#include<ctime>
+#include"DateLib.h"
+#include"MyStruct.h"
+#include"MyLibrary.h"
+# pragma warning ( disable : 4996 )
+
+using namespace std;
+using Mystruct::stDate;
+
+
+
+int main() {
+	
+
+	cout << "Vacation starts : \n";
+	stDate VacationStarts,ReturnFromVacation;
+	VacationStarts = DateLib::GetFullDate();
+
+	ReturnFromVacation = DateLib::ReturnDateFromVacation(VacationStarts,DateLib::ReadVacationDays());
+
+	cout << "Return Date : " << DateLib::GetDay_S_Name(DateLib::DayOfWeekOrder(ReturnFromVacation)) << ", "
+		<< ReturnFromVacation.Day << "/" << ReturnFromVacation.Month << "/" << ReturnFromVacation.Year << endl;
+
+	system("pause>0");
+	return 0;
+}

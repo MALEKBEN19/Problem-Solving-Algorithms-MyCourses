@@ -1,0 +1,97 @@
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+stDay GetFullDate() {
+	stDay Date;
+	Date.Day = Getday();
+	Date.Month = GetMonth();
+	Date.Year = GetYear();
+
+	return Date;
+}
+
+
+
+int GetdaysToAddToADate() {
+	int dayByUser = 0;
+	printf("Please enter a Number of days that you want to add?  ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+
+short CountFromTheBgOfYear(short Year,short month,short Day) {
+	short NumberofDays = 0;
+	for (short i = 1; i <= month - 1;i++) {
+		NumberofDays += MyLib::NumberOfDaysInMonth(Year, i);
+
+	}
+	NumberofDays += Day;
+	return NumberofDays;
+}
+
+
+bool CheckIfLastDayInMonth(stDay Date) {
+	short GetDaysInMonth = MyLib::NumberOfDaysInMonth(Date.Year,Date.Month);
+	return (GetDaysInMonth == Date.Day ? true : false);
+}
+
+
+
+
+bool CheckIfLastMonthInYear(short Month	) {
+	return (Month == 12 ? true : false);
+}
+
+
+int main() {
+
+	cout << "Date 1 : \n";
+	stDay Date1= GetFullDate();
+	cout << "\n";
+
+	if(CheckIfLastDayInMonth(Date1)) {
+		cout << "Yes, Day is last day in month!\n";
+	}
+	else {
+		cout << "No, Day is Not last day in month!\n";
+	}
+
+	if (CheckIfLastMonthInYear(Date1.Month)) {
+		cout << "Yes, Month is last Month in Year!\n";
+	}
+	else {
+		cout << "No, Month is Not last Month in Year!\n";
+	}
+
+
+
+
+	system("pause>0");
+	return 0;
+}

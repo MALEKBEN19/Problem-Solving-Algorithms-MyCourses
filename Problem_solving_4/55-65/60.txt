@@ -1,0 +1,31 @@
+bool IsDateWithinPeriod(stPeriod Period, stDate DateToCheck) {
+	while (IsDate1BeforeDate2(Period.DateStart, Period.DateEnd)) {
+		if (IsDate1EqualDate2(Period.DateStart, DateToCheck)) {
+			return true;
+		}
+		Period.DateStart = IncressDateByOneDay(Period.DateStart);
+	}
+	return false;
+}
+
+
+using namespace DateLib;
+int main() {
+	stPeriod Period1;
+	stDate DateToCheck;
+	cout << "Enter period 1 : \n";
+	Period1 = ReadPeriods();
+
+	cout << "\nPlease enter Date to check? \n";
+	DateToCheck = GetFullDate();
+
+	if (IsDateWithinPeriod(Period1,DateToCheck)) {
+		cout << "\nYes Date is within period! \n";
+	}
+	else {
+		cout << "\nNo Date is Not within period! \n";
+	}
+
+	system("pause>0");
+	return 0;
+}

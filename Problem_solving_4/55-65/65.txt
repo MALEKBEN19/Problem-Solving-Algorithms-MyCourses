@@ -1,0 +1,15 @@
+int main() {
+
+	stDate MyDate;
+	string StrDate = ReadDateString();
+	MyDate = StringToDate(StrDate);
+	cout << "\nYou entered : " << ConvertDateToString(MyDate) << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate,enFormatDate::YearForwardSlashMonth) << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate, enFormatDate::MonthForwardSlashDay) << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate, enFormatDate::DayDash) << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate, enFormatDate::MonthDash) << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate,enFormatDate::DateWithText) << endl;
+
+	system("pause>0");
+	return 0;
+}

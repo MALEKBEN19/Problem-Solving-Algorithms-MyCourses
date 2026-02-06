@@ -1,0 +1,186 @@
+using Mystruct::stDate;
+
+void FixFeb29(stDate &date) {
+	if (date.Day == 29 && date.Month == 2 && !CheckIfLeapYearOrNot(date.Year)) {
+		date.Day = 28;
+	}
+}
+
+
+	bool CheckIfFirstDayInMonth(stDate Date) {
+		return  Date.Day ==1;
+	}
+
+	bool CheckIfFirstMonthInYear(short Month) {
+		return (Month == 1);
+	}
+
+	stDate DecressDateByOneDay(stDate Date) {
+		if (CheckIfFirstDayInMonth(Date)) {
+			if (CheckIfFirstMonthInYear(Date.Month)) {
+				Date.Month = 12;
+				Date.Day = 31;
+				--Date.Year;
+			}
+			else {
+				Date.Month--;
+				Date.Day = NumberOfDaysInMonth(Date.Year,Date.Month);
+			}
+		}
+		else {
+			Date.Day -= 1;
+		}
+		return Date;
+	}
+
+	stDate DecressByXDays(short Days, stDate date) {
+		for (short x = 1; x <= Days; x++)
+			date = DecressDateByOneDay(date);
+		return date;
+	}
+
+
+	stDate DecressDateBy1week(stDate date) {
+		for (short x = 1; x <= 7; x++)
+			date = DecressDateByOneDay(date);
+		return date;
+	}
+
+	stDate DecressDateByXweeks(short Weeks, stDate date) {
+		for (short x = 1; x <= Weeks; x++)
+			date = DecressDateBy1week(date);
+		return date;
+	}
+
+
+	stDate DecressDateBy1Month(stDate date) {
+
+		if (date.Month == 1) {
+			date.Month = 12;
+			date.Year--;
+		}
+		else {
+			date.Month--;
+		}
+		short DaysInCurrentMonth = NumberOfDaysInMonth(date.Year, date.Month);
+		if (date.Day > DaysInCurrentMonth) {
+			date.Day = DaysInCurrentMonth;
+		}
+		return date;
+	}
+
+	stDate DecressDateByXMonths(short month, stDate date) {
+		for (short x = 1; x <= month; x++)
+			date = DecressDateBy1Month(date);
+		return date;
+	}
+
+	stDate DecressDateBy1Year(stDate date) {
+		date.Year--;
+		FixFeb29(date);
+		return date;
+	}
+
+	stDate DecressDateByXYear(short years, stDate date) {
+		for (short x = 1; x <= years; x++)
+			date = DecressDateBy1Year(date);
+		return date;
+	}
+
+	stDate DecressDateByXYearsFaster(short Years, stDate date) {
+		date.Year -= Years;
+		FixFeb29(date);
+		return date;
+	}
+
+	stDate DecressDateBy1Decade(stDate date) {
+		date.Year -= 10;
+		FixFeb29(date);
+		return date;
+	}
+
+	stDate DecressDateByXDecades(short Years, stDate date) {
+		for (short x = 1; x <= Years * 10; x++)
+			date = DecressDateBy1Year(date);
+		return date;
+	}
+
+	stDate DecressDateByXDecadesFaster(short Years, stDate date) {
+		date.Year -= Years * 10;
+		FixFeb29(date);
+		return date;
+	}
+
+	stDate DecressDateBy1Century(stDate date) {
+		date.Year -= 100;
+		FixFeb29(date);
+		return date;
+	}
+
+	stDate DecressDateBy1Millennuim(stDate date) {
+
+		date.Year -= 1000;
+		FixFeb29(date);
+		return date;
+	}
+
+
+
+
+int main() {
+
+
+	cout << "Date 1 : \n\n";
+	stDate date1;
+
+	date1 = DateLib::GetFullDate();
+
+	date1=DateLib::DecressDateByOneDay(date1);
+	cout <<"\nDecress date by one day : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+
+	date1 = DateLib::DecressByXDays(10,date1);
+	cout << "\nDecress date by X days : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1week( date1);
+	cout << "\nDecress date by 1 week : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+														   
+	date1 = DateLib::DecressDateByXweeks(10, date1);
+	cout << "\nDecress date by X weeks : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1Month( date1);
+	cout << "\nDecress date by One Month : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateByXMonths(5,date1);
+	cout << "\nDecress date by X Months : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1Year( date1);
+	cout << "\nDecress date by One Year : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateByXYear(10,date1);
+	cout << "\nDecress date by X Year : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateByXYearsFaster(10, date1);
+	cout << "\nDecress date by X Year 'Faster' : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1Decade(date1);
+	cout << "\nDecress date by one Decade : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateByXDecades(10,date1);
+	cout << "\nDecress date by X Decades : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateByXDecadesFaster(10, date1);
+	cout << "\nDecress date by X Decades Faster : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1Century(date1);
+	cout << "\nDecress date by One Century : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+	date1 = DateLib::DecressDateBy1Millennuim(date1);
+	cout << "\nDecress date by One Millennuim : " << date1.Day << "/" << date1.Month << "/" << date1.Year << endl;
+
+
+
+
+	system("pause>0");
+	return 0;
+}

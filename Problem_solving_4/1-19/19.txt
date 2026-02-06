@@ -1,0 +1,127 @@
+#include <iostream>
+#include <string>
+#include "MyLib.h"
+#include<random>
+#include<iomanip>
+#include<vector>
+#include<cctype>
+#include<fstream>
+#include<ctime>
+# pragma warning ( disable : 4996 );
+
+using namespace std;
+
+struct stDay {
+	short Year;
+	short Month;
+	short Day;
+};
+
+
+
+bool CheckIfLastDayInMonth(stDay Date) {
+	short GetDaysInMonth = MyLib::NumberOfDaysInMonth(Date.Year, Date.Month);
+	return (GetDaysInMonth == Date.Day ? true : false);
+}
+
+bool CheckIfLastMonthInYear(short Month) {
+	return (Month == 12 ? true : false);
+}
+
+
+
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short MonthByUser = 0;
+	printf("Please enter a Month ");
+	cin >> MonthByUser;
+	return MonthByUser;
+}
+
+
+short Getday() {
+	short dayByUser = 0;
+	printf("Please enter a day ");
+	cin >> dayByUser;
+	return dayByUser;
+}
+
+
+bool AreDatesEqual(stDay Date1, stDay Date2) {
+	return ((Date1.Year == Date2.Year) ? ((Date1.Month == Date2.Month) ? ((Date1.Day == Date2.Day) ? true : false) : false) : false);
+}
+
+stDay GetFullDate() {
+	stDay Date;
+	Date.Day = Getday();
+	Date.Month = GetMonth();
+	Date.Year = GetYear();
+
+	return Date;
+}
+
+bool IsDate1BeforeDate2( stDay Date1 , stDay Date2) {
+	return ((Date1.Year < Date2.Year) ? true : (Date1.Year == Date2.Year) ? (Date1.Month < Date2.Month) ? true : (Date1.Month == Date2.Month ? Date1.Day < Date2.Day : false) : false);
+
+}
+
+
+stDay IncressDateByOneDay(stDay Date) {
+	if (CheckIfLastDayInMonth(Date)) {
+		if (CheckIfLastMonthInYear(Date.Month)) {
+			Date.Day = 1;
+			Date.Month = 1;
+			Date.Year++;
+		}
+		else {
+			Date.Day = 1;
+			Date.Month++;
+		}
+
+	}
+	else {
+		Date.Day++;
+	}
+	return Date;
+}
+int CountDifferencesBetweenTwoDates(stDay Date1, stDay Date2, bool IncludeLastDay = false)
+{
+	int DaysDiff = 0;
+	while (IsDate1BeforeDate2(Date2, Date1)) {
+		DaysDiff++;
+		Date2 = IncressDateByOneDay(Date2);
+	}
+	return IncludeLastDay ? ++DaysDiff : DaysDiff ;
+}
+
+
+
+
+int main() {
+
+
+	cout << "Please enter Date 1 : \n";
+	stDay Date1= GetFullDate();
+	cout << "\nPlease enter Date 2 : \n";
+	stDay Date2 = GetFullDate();
+	cout << "\n";
+	
+	cout << "Your Age is : "<< CountDifferencesBetweenTwoDates (Date1,Date2,true)<< "Day(s)\n";
+
+
+
+
+
+
+	system("pause>0");
+	return 0;
+}
+
+                                                                                                                                           
+

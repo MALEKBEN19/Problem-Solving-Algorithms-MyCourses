@@ -1,0 +1,24 @@
+short AskUserEnterYear() {
+	short YearByUser = 0;
+	printf("Please enter year? \n");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+bool CheckIfLeapYearOrNot(short Year) {
+	return (Year%400==0||Year%4==0&&!Year%100==0);
+}
+
+int main() {
+
+	short Year = AskUserEnterYear();
+	if (CheckIfLeapYearOrNot(Year)) 
+		cout << "Yes " << Year << " is a Leap Year.\n";
+	else
+		cout << "No " << Year << " is Not a Leap Year.\n";
+
+	system("pause>0");
+	return 0;
+}
+
+                         

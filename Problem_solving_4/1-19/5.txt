@@ -1,0 +1,60 @@
+
+short AskUserEnterYear() {
+	short YearByUser = 0;
+	printf("Please enter year to check ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+short GetWhichMonth() {
+	cout << "\nWhich Month do you want to know? ";
+	short Month=0;
+	cin >> Month;
+	return Month;
+}
+
+short NumberOfDaysInMonth(short Year,short Month) {
+	if (Month < 1 || Month>12) {
+		return 0;
+	}
+	if (MyLib::CheckIfLeapYearOrNot(Year) && Month == 2) {
+		return 29;
+	}
+	if (Month == 2) {
+		return 28;
+	}if (Month == 4 || Month == 6  || Month == 9 || Month == 11) {
+		return 30;
+	}
+	else {
+		return 31;
+	}
+}
+
+int NumberOfHoursInMonth(short Year,short Month) {
+	return NumberOfDaysInMonth(Year, Month) * 24;
+}
+
+int NumberOfMinutesInMonth(short Year, short Month) {
+	return NumberOfHoursInMonth(Year,Month)*60;
+}
+
+int NumberOfSecondsInMonth(short Year, short Month) {
+	return NumberOfMinutesInMonth(Year, Month) * 60;
+}
+
+
+
+
+int main() {
+
+	short Year = AskUserEnterYear();
+	short Month = GetWhichMonth();
+
+	cout << "\nNumber of days    In Month [" << Month << "] Is " <<	NumberOfDaysInMonth(Year,Month)	<< endl;
+	cout << "\nNumber of Hours   In Month [" << Month << "] Is " << NumberOfHoursInMonth(Year, Month) << endl;
+	cout << "\nNumber of Minutes In Month [" << Month << "] Is " << NumberOfMinutesInMonth(Year, Month) << endl;
+	cout << "\nNumber of Seconds In Month [" << Month << "] Is " << NumberOfSecondsInMonth(Year, Month) << endl;
+
+
+	system("pause>0");
+	return 0;
+}

@@ -1,0 +1,41 @@
+short AskUserEnterYear() {
+	short YearByUser = 0;
+	printf("Please enter year? \n");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+bool CheckIfLeapYearOrNot(short Year) {
+	return ((Year % 400 == 0) || (Year % 4 == 0 && Year % 100 != 0));
+}
+
+
+void ShowNumbersOfDAndHAndSInYear(short Year) {
+	
+	int LpYr = 366;
+	int NrYr = 365;
+	if (CheckIfLeapYearOrNot(Year)) {
+		cout << "Year " << Year << " Is a Leap Year : \n";
+		cout << "Number of days in Year " << Year << " is " << LpYr<<endl;
+		cout << "Number of Hours in Year " << Year << " is " << LpYr*24 << endl;
+		cout << "Number of Minutes in Year " << Year << " is " << LpYr*24*60 << endl;
+		cout << "Number of Seconds in Year " << Year << " is " << LpYr*24*60*60 << endl;
+	}
+	else {
+		cout << "Year " << Year << " Is Not a Leap Year : \n";
+		cout << "Number of days in Year " << Year << " is " << NrYr << endl;
+		cout << "Number of Hours in Year " << Year << " is " << NrYr * 24 << endl;
+		cout << "Number of Minutes in Year " << Year << " is " << NrYr * 24 * 60 << endl;
+		cout << "Number of Seconds in Year " << Year << " is " << NrYr * 24 * 60 * 60 << endl;
+	}
+}
+
+
+int main() {
+
+	ShowNumbersOfDAndHAndSInYear(AskUserEnterYear());
+
+
+	system("pause>0");
+	return 0;
+}

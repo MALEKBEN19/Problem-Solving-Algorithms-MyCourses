@@ -1,0 +1,17 @@
+using namespace DateLib;
+int main() {
+	stPeriod Period1;
+	
+	cout << "Enter period 1 : \n";
+	Period1 = ReadPeriods();
+
+	cout << "\nPeriod lenght is : "
+		<< PeriodLengthInDays(Period1) << endl;
+
+	cout << "Period lenght Include end Date : "
+		<< PeriodLengthInDays(Period1,true) << endl;
+
+
+	system("pause>0");
+	return 0;
+}

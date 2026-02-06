@@ -1,0 +1,65 @@
+
+short GetYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short GetMonth() {
+	short YearByUser = 0;
+	printf("Please enter a Month ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+
+
+string ConvertMonthToShortName(short MonthNum) {
+	string ArrMonthName[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aut","Sep","Oct","Nov","Dec"};
+	return ArrMonthName[MonthNum - 1];
+}
+
+
+
+void PrintMonthCalendar(short Month,short Year) {
+	short NumberOfDays = MyLib::NumberOfDaysInMonth(Year,Month);
+	short WhereToStartTheMonth = MyLib::GetDayOrder(Year,Month,1);
+
+	printf("\n ________________%s__________________\n\n", ConvertMonthToShortName(Month).c_str());
+	printf("  Sun  Mon  Tue  Wed  Thur  Fri  Sat\n");
+	short i;
+	for (i=0; i < WhereToStartTheMonth; i++)
+		printf("     ");
+	for (short x = 1; x <= NumberOfDays; x++) {
+		printf("%5d", x);
+		if (++i == 7) {
+			i = 0;
+			printf("\n");
+		}
+	}
+	printf("\n _____________________________________\n");
+}
+
+
+void PrintYearCalendar(short Year) {
+	printf("\n _____________________________________\n\n");
+	printf("	Calendar Of The Year %d\n", Year);
+	printf("\n _____________________________________\n");
+	for (short i = 1; i <= 12; i++) {
+		PrintMonthCalendar(i,Year);
+		cout << endl<<endl;
+	}
+}
+
+
+
+
+
+int main() {
+	PrintYearCalendar(GetYear());
+	system("pause>0");
+	return 0;
+}
+
+                        

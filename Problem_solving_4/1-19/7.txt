@@ -1,0 +1,91 @@
+enum enDaysOfWeek{Sat=0,Mon,Tue,Wed,Thur,Fri,Sun};
+
+short AskUserEnterYear() {
+	short YearByUser = 0;
+	printf("Please enter a year ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short AskUserEnterMonth() {
+	short YearByUser = 0;
+	printf("Please enter a Month ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+short AskUserEnterDay() {
+	short YearByUser = 0;
+	printf("Please enter a Day ");
+	cin >> YearByUser;
+	return YearByUser;
+}
+
+void ConvertDateToOneLine(short Year,short Month,short Day) {
+	cout << "\nDate        : " << Day << "/" << Month << "/" << Year << "\n";
+}
+
+
+short GetDayOrder(short Year,short Month,short Day) {
+	short A = (14 - Month) / 12;
+	short Y = Year - A;
+	short M = Month + (12 * A) - 2;
+	return (Day + Year + (Year / 4) - (Year / 100) - (Year / 400) - ((31 * M) / 12)) % 7;
+}
+
+
+void PrintWeekDayAndItsOrdered(enDaysOfWeek Day) {
+	switch (Day) {
+	case enDaysOfWeek::Sat: {
+		cout << "\nDay order     : " << 0 << endl;
+		cout << "\nDay Name     : " << "Saturday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Mon: {
+		cout << "\nDay order     : " << 1 << endl;
+		cout << "\nDay Name     : " << "Monday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Tue: {
+		cout << "\nDay order     : " << 2 << endl;
+		cout << "\nDay Name     : " << "Tuesday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Wed: {
+		cout << "\nDay order     : " << 3 << endl;
+		cout << "\nDay Name     : " << "Wednesday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Thur: {
+		cout << "\nDay order     : " << 4 << endl;
+		cout << "\nDay Name     : " << "Thursday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Fri: {
+		cout << "\nDay order     : " << 5 << endl;
+		cout << "\nDay Name     : " << "Friday" << endl;
+		break;
+	}
+	case enDaysOfWeek::Sun: {
+		cout << "\nDay order     : " << 6 << endl;
+		cout << "\nDay Name     : " << "Sunday" << endl;
+		break;
+	}
+	default:
+		cout << "Wrong Day!";
+	}
+}
+
+
+
+int main() {
+
+	short Year = AskUserEnterYear();
+	short Month = AskUserEnterMonth();
+	short Day = AskUserEnterDay();
+	ConvertDateToOneLine(Year,Month,Day);
+	PrintWeekDayAndItsOrdered((enDaysOfWeek)GetDayOrder(Year, Month, Day));
+
+	system("pause>0");
+	return 0;
+}

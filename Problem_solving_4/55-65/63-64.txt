@@ -1,0 +1,13 @@
+int main() {
+	stDate MyDate;
+	string StrDate = ReadDateString();
+	MyDate = StringToDate(StrDate);
+	cout << "Day " << MyDate.Day<<endl;
+	cout << "Month " << MyDate.Month << endl;
+	cout << "Year " << MyDate.Year << endl;
+	cout << "You entered : " << ConvertDateToString(MyDate) << endl;
+
+
+	system("pause>0");
+	return 0;
+}

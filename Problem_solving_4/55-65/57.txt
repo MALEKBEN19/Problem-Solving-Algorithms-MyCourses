@@ -1,0 +1,19 @@
+enCompareDates ComparDatesFunction(stDate Date1, stDate Date2) {
+	return (IsDate1BeforeDate2(Date1, Date2) ? enCompareDates::Before : (IsDate1EqualDate2(Date1, Date2))? enCompareDates::Equal : enCompareDates::After);
+}
+
+int main() {
+	
+
+	cout << "Date 1 : \n";
+	stDate Date1,Date2;
+	Date1 = GetFullDate();
+	cout << "\nDate 2: \n";
+	Date2 = GetFullDate();
+
+	cout << "Compare Result : " << ComparDatesFunction(Date1, Date2) << endl;
+
+
+	system("pause>0");
+	return 0;
+}
